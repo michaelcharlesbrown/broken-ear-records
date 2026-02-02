@@ -78,14 +78,14 @@ export default function ArtistLinksHub({
     <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
       <div className="w-full max-w-sm flex flex-col items-center bg-black overflow-hidden">
         {/* Album Cover */}
-        <div className="w-full relative">
-          <div className="relative border-b border-red-600">
+        <div className="w-full relative group">
+          <div className="relative border-b border-red-600 overflow-hidden">
             <Image
               src={coverImage}
               alt={releaseTitle}
               width={400}
               height={400}
-              className="w-full h-auto object-cover block"
+              className="w-full h-auto object-cover block transition-transform duration-300 ease-out group-hover:scale-105"
               priority
             />
           </div>

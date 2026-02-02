@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
-import Link from "next/link";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Header from "@/components/Header";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Container from "@/components/ui/Container";
 import { typography } from "@/components/ui/Typography";
@@ -58,39 +58,10 @@ export default function RootLayout({
       <body
         className={`${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <header className="border-b">
-          <Container className="py-4 flex flex-col md:flex-row md:justify-between md:items-center">
-            <Link href="/" className="w-full md:w-auto">
-              <h1 className="font-bold whitespace-nowrap mobile-site-title md:text-2xl">
-                BROKEN EAR RECORDS
-              </h1>
-            </Link>
-            <nav className="mt-2 md:mt-0 w-full md:w-auto">
-              <ul className="flex gap-2">
-                <li>
-                  <Link href="/artists" className="hover:underline whitespace-nowrap mobile-nav-link">
-                    ARTISTS
-                  </Link>
-                </li>
-                <li>|</li>
-                <li>
-                  <Link href="/releases" className="hover:underline whitespace-nowrap mobile-nav-link">
-                    RELEASES
-                  </Link>
-                </li>
-                <li>|</li>
-                <li>
-                  <Link href="/about" className="hover:underline whitespace-nowrap mobile-nav-link">
-                    ABOUT
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </Container>
-        </header>
+        <Header />
         <main className="flex-1">{children}</main>
         <footer className="bg-black text-white">
-          <Container className="py-12">
+          <Container className="py-20 md:py-24">
             <h2 className={`${typography.h1} text-center mb-2`}>JOIN THE LIST</h2>
             <p className="text-center mb-6">
               Sign up to hear about the latest releases from Broken Ear Records.

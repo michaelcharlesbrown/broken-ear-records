@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { artists } from "@/data/artists";
 import { releases } from "@/data/releases";
 import LinkButton from "@/components/LinkButton";
@@ -69,13 +70,13 @@ export default async function ArtistDetail({ params }: PageProps) {
     <Container className="py-8">
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
         {/* Left: Larger Image */}
-        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0">
+        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden group">
           <Image
             src={artist.images.portrait || artist.heroImage}
             alt={artist.name}
             width={800}
             height={800}
-            className="w-full h-auto object-cover"
+            className="w-full h-auto object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             priority
           />
         </div>
@@ -93,7 +94,14 @@ export default async function ArtistDetail({ params }: PageProps) {
               <h2 className={typography.h2}>Releases</h2>
               <ul>
                 {artistReleases.map((release) => (
-                  <li key={release.slug}>{release.title}</li>
+                  <li key={release.slug}>
+                    <Link
+                      href={`/releases/${release.slug}`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      {release.title}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </section>
