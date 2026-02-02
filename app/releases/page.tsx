@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+import { releases } from "@/data/releases";
+import { artists } from "@/data/artists";
+import Container from "@/components/ui/Container";
+import { typography } from "@/components/ui/Typography";
+import MediaCard from "@/components/MediaCard";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+
+export const metadata: Metadata = {
+  title: "Releases",
+  description: "Discover releases on Broken Ear Records.",
+  alternates: {
+    canonical: `${siteUrl}/releases`,
+  },
+  openGraph: {
+    title: "Releases | Broken Ear Records",
+    description: "Discover releases on Broken Ear Records.",
+    url: `${siteUrl}/releases`,
+  },
+  twitter: {
+    title: "Releases | Broken Ear Records",
+    description: "Discover releases on Broken Ear Records.",
+  },
+};
+
+export default function Releases() {
+  return (
+    <Container className="py-8">
+      <h2 className={`${typography.h2} mb-6`}>Releases</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {releases.map((release) => {
+          const artist = artists.find((a) => a.slug === release.artistSlug);
+          return (
+            <MediaCard
+              key={release.slug}
+              href={`/releases/${release.slug}`}
+              imageSrc={release.coverImage}
+              imageAlt={release.title}
+              title={release.title}
+              description={artist?.name || release.artistSlug}
+              variant="release"
+              metadata={
+                <p className="text-sm text-gray-500">
+                  {release.type} · {release.year}
+                </p>
+              }
+            />
+          );
+        })}
+      </div>
+    </Container>
+  );
+}

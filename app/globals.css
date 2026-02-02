@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +21,21 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+/* Mobile header typography - fluid scaling */
+@media (max-width: 767px) {
+  .mobile-site-title {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  
+  .mobile-nav-link {
+    font-size: clamp(0.875rem, 4vw, 1rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
 }
