@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/components/ui/Button";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -58,28 +57,27 @@ export default function NewsletterSignup() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-[380px] mx-auto px-4">
+    <div>
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-0 max-w-[380px] mx-auto px-4">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={state === "loading"}
-          className="flex-1 px-4 py-2 border border-white bg-transparent text-white placeholder-gray-400 disabled:opacity-50 min-w-0"
+          className="flex-1 px-4 py-2 border border-white bg-black text-white placeholder-gray-400 disabled:opacity-50 min-w-0"
         />
-        <Button
+        <button
           type="submit"
-          variant="outline"
           disabled={state === "loading"}
-          className="border-white text-white hover:bg-white hover:text-black whitespace-nowrap"
+          className="px-4 py-2 border border-white border-l-0 bg-black text-white hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
         >
           {state === "loading" ? "Subscribing..." : "Subscribe"}
-        </Button>
+        </button>
       </form>
       {state === "error" && errorMessage && (
         <p className="text-center mt-4 text-red-300 px-4">{errorMessage}</p>
       )}
-    </>
+    </div>
   );
 }

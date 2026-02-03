@@ -64,7 +64,7 @@ export default function RootLayout({
           <Container className="py-20 md:py-24">
             <h2 className={`${typography.h1} text-center mb-2`}>JOIN THE LIST</h2>
             <p className="text-center mb-6">
-              Sign up to hear about the latest releases from Broken Ear Records.
+              SIGN UP TO HEAR ABOUT THE LATEST RELEASES FROM BROKEN EAR RECORDS.
             </p>
             <NewsletterSignup />
           </Container>

@@ -40,3 +40,8 @@ body {
     letter-spacing: -0.01em;
   }
 }
+
+/* All images get 8px border radius */
+img {
+  border-radius: 8px;
+}

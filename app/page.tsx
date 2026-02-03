@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { typography } from "@/components/ui/Typography";
+import HeroVideo from "@/components/HeroVideo";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 
@@ -24,16 +25,7 @@ export default function Home() {
   return (
     <div>
       <section className="relative w-full h-screen overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/video/broken-ear-hero.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <HeroVideo />
       </section>
     </div>
   );
