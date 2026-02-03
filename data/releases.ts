@@ -49,9 +49,9 @@ export const releases: Release[] = [
     slug: "booming-dunes-first-ep",
     artistSlug: "booming-dunes",
     year: 2023,
-    type: "EP",
+    type: "Album",
     coverImage: "/images/bd/dark-patterns.jpg",
-    blurb: "Booming Dunes delivers a powerful EP that captures their raw energy.",
+    blurb: "Booming Dunes delivers a powerful album that captures their raw energy.",
     buyLinks: [
       { label: "Bandcamp", href: "https://example.com/buy" },
       { label: "CD", href: "https://example.com/cd" },

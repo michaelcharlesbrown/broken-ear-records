@@ -13,8 +13,8 @@ export default function HeroVideo() {
     // Set initial video source based on viewport
     const getVideoSource = () => {
       return mediaQuery.matches
-        ? "/video/broken-ear-hero-desktop-v1.mp4"
-        : "/video/broken-ear-hero-mobile-v1.mp4";
+        ? "/video/broken-ear-hero-desktop-v2.mp4"
+        : "/video/broken-ear-hero-mobile-v2.mp4";
     };
 
     // Set initial source

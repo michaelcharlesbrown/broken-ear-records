@@ -57,13 +57,13 @@ export default async function ReleaseDetail({ params }: PageProps) {
     <Container className="py-8">
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
         {/* Left: Larger Image */}
-        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden group">
+        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden">
           <Image
             src={release.coverImage}
             alt={release.title}
             width={800}
             height={800}
-            className="w-full h-auto object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+            className="w-full h-auto object-cover rounded-none"
             priority
           />
         </div>

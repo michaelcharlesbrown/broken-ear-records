@@ -24,14 +24,14 @@ export default function MediaCard({
   const cardClasses = "block border-0 !p-0 hover:shadow-none";
 
   return (
-    <Link href={href} className={`${cardClasses} group`}>
+    <Link href={href} className={cardClasses}>
       <div className="aspect-square bg-gray-200 mb-4 overflow-hidden">
         <Image
           src={imageSrc}
           alt={imageAlt}
           width={400}
           height={400}
-          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover rounded-none"
         />
       </div>
       <h3 className="font-semibold text-lg mb-2">{title}</h3>

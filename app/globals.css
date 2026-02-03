@@ -41,7 +41,14 @@ body {
   }
 }
 
-/* All images get 8px border radius */
+/* Remove border-radius from all images */
 img {
-  border-radius: 8px;
+  border-radius: 0 !important;
 }
+
+/* Remove border-radius from Next.js Image component wrappers */
+span[style*="position: relative"] img,
+div[style*="position: relative"] img {
+  border-radius: 0 !important;
+}
+
