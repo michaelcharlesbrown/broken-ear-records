@@ -52,3 +52,68 @@ div[style*="position: relative"] img {
   border-radius: 0 !important;
 }
 
+/* Remove any borders/outlines from hero video section */
+video {
+  border: 0 !important;
+  outline: 0 !important;
+  display: block !important;
+  vertical-align: bottom !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+section[class*="hero"],
+section:has(video) {
+  border: 0 !important;
+  outline: 0 !important;
+  border-bottom: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+/* Remove white line between hero and footer on mobile */
+main {
+  border: 0 !important;
+  outline: 0 !important;
+  border-bottom: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Ensure main doesn't create extra space when child is h-screen */
+main > section[class*="h-screen"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+footer {
+  border-top: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Ensure no gap between main and footer */
+main + footer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Ensure hero section extends to edge and footer starts immediately */
+section[class*="h-screen"] {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Remove any potential box-shadow or other visual artifacts */
+section:has(video),
+video {
+  box-shadow: none !important;
+}
+

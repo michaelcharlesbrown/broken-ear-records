@@ -59,8 +59,8 @@ export default function RootLayout({
         className={`${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <Header />
-        <main className="flex-1">{children}</main>
-        <footer className="bg-black text-white">
+        <main className="flex-1 border-0 outline-0 min-h-0">{children}</main>
+        <footer className="bg-black text-white border-0 outline-0 border-t-0">
           <Container className="py-20 md:py-24">
             <h2 className={`${typography.h1} text-center mb-2`}>JOIN THE LIST</h2>
             <p className="text-center mb-6">

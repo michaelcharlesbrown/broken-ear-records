@@ -55,7 +55,8 @@ export default function HeroVideo() {
       muted
       loop
       playsInline
-      className="absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 w-full h-full object-cover border-0 outline-0 block"
+      style={{ margin: 0, padding: 0, display: 'block' }}
     >
       <source src={videoSrc} type="video/mp4" />
       Your browser does not support the video tag.
