@@ -16,11 +16,21 @@ export const metadata: Metadata = {
     description:
       "Broken Ear Records is an independent label based in Los Angeles, committed to releasing original, uncompromising work from underground artists.",
     url: `${PRIMARY_DOMAIN}/about`,
+    images: [
+      {
+        url: "/og/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Broken Ear Records",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "About | Broken Ear Records",
     description:
       "Broken Ear Records is an independent label based in Los Angeles, committed to releasing original, uncompromising work from underground artists.",
+    images: ["/og/og-default.png"],
   },
 };
 

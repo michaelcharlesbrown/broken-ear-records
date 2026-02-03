@@ -36,10 +36,20 @@ export async function generateMetadata({
       title: `${artist.name} | Broken Ear Records`,
       description: artist.shortBio,
       url: `${PRIMARY_DOMAIN}/artists/${slug}`,
+      images: [
+        {
+          url: "/og/og-default.png",
+          width: 1200,
+          height: 630,
+          alt: "Broken Ear Records",
+        },
+      ],
     },
     twitter: {
+      card: "summary_large_image",
       title: `${artist.name} | Broken Ear Records`,
       description: artist.shortBio,
+      images: ["/og/og-default.png"],
     },
   };
 }

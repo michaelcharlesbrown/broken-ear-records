@@ -17,10 +17,20 @@ export const metadata: Metadata = {
     title: "Releases | Broken Ear Records",
     description: "Discover releases on Broken Ear Records.",
     url: `${PRIMARY_DOMAIN}/releases`,
+    images: [
+      {
+        url: "/og/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Broken Ear Records",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Releases | Broken Ear Records",
     description: "Discover releases on Broken Ear Records.",
+    images: ["/og/og-default.png"],
   },
 };
 

@@ -14,10 +14,20 @@ export const metadata: Metadata = {
     title: "Broken Ear Records",
     description: "Independent record label based in Los Angeles.",
     url: PRIMARY_DOMAIN,
+    images: [
+      {
+        url: "/og/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Broken Ear Records",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Broken Ear Records",
     description: "Independent record label based in Los Angeles.",
+    images: ["/og/og-default.png"],
   },
 };
 

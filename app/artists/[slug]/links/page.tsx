@@ -32,10 +32,20 @@ export async function generateMetadata({
       title: `${artist.name} - Links | Broken Ear Records`,
       description: `Links for ${artist.name} on Broken Ear Records.`,
       url: `${PRIMARY_DOMAIN}/artists/${slug}/links`,
+      images: [
+        {
+          url: "/og/og-default.png",
+          width: 1200,
+          height: 630,
+          alt: "Broken Ear Records",
+        },
+      ],
     },
     twitter: {
+      card: "summary_large_image",
       title: `${artist.name} - Links | Broken Ear Records`,
       description: `Links for ${artist.name} on Broken Ear Records.`,
+      images: ["/og/og-default.png"],
     },
   };
 }

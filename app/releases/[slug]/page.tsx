@@ -35,10 +35,20 @@ export async function generateMetadata({
       title: `${release.title} | Broken Ear Records`,
       description: release.blurb,
       url: `${PRIMARY_DOMAIN}/releases/${slug}`,
+      images: [
+        {
+          url: "/og/og-default.png",
+          width: 1200,
+          height: 630,
+          alt: "Broken Ear Records",
+        },
+      ],
     },
     twitter: {
+      card: "summary_large_image",
       title: `${release.title} | Broken Ear Records`,
       description: release.blurb,
+      images: ["/og/og-default.png"],
     },
   };
 }
