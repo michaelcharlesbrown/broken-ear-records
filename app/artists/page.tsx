@@ -4,18 +4,18 @@ import Container from "@/components/ui/Container";
 import { typography } from "@/components/ui/Typography";
 import MediaCard from "@/components/MediaCard";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
 export const metadata: Metadata = {
   title: "Artists",
   description: "Discover artists on Broken Ear Records.",
   alternates: {
-    canonical: `${siteUrl}/artists`,
+    canonical: `${PRIMARY_DOMAIN}/artists`,
   },
   openGraph: {
     title: "Artists | Broken Ear Records",
     description: "Discover artists on Broken Ear Records.",
-    url: `${siteUrl}/artists`,
+    url: `${PRIMARY_DOMAIN}/artists`,
   },
   twitter: {
     title: "Artists | Broken Ear Records",

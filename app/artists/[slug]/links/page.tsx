@@ -10,7 +10,7 @@ interface PageProps {
   }>;
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
 export async function generateMetadata({
   params,
@@ -26,12 +26,12 @@ export async function generateMetadata({
     title: `${artist.name} - Links`,
     description: `Links for ${artist.name} on Broken Ear Records.`,
     alternates: {
-      canonical: `${siteUrl}/artists/${slug}/links`,
+      canonical: `${PRIMARY_DOMAIN}/artists/${slug}/links`,
     },
     openGraph: {
       title: `${artist.name} - Links | Broken Ear Records`,
       description: `Links for ${artist.name} on Broken Ear Records.`,
-      url: `${siteUrl}/artists/${slug}/links`,
+      url: `${PRIMARY_DOMAIN}/artists/${slug}/links`,
     },
     twitter: {
       title: `${artist.name} - Links | Broken Ear Records`,

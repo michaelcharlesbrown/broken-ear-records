@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import { typography } from "@/components/ui/Typography";
 import HeroVideo from "@/components/HeroVideo";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Welcome to Broken Ear Records - Independent music label.",
+  description: "Independent record label based in Los Angeles.",
   alternates: {
-    canonical: siteUrl,
+    canonical: PRIMARY_DOMAIN,
   },
   openGraph: {
     title: "Broken Ear Records",
-    description: "Welcome to Broken Ear Records - Independent music label.",
-    url: siteUrl,
+    description: "Independent record label based in Los Angeles.",
+    url: PRIMARY_DOMAIN,
   },
   twitter: {
     title: "Broken Ear Records",
-    description: "Welcome to Broken Ear Records - Independent music label.",
+    description: "Independent record label based in Los Angeles.",
   },
 };
 

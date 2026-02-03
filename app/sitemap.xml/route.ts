@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { artists } from "@/data/artists";
 import { releases } from "@/data/releases";
 
+const PRIMARY_DOMAIN = "https://brokenearrecords.com";
+
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+  const siteUrl = PRIMARY_DOMAIN;
 
   // Static routes
   const staticRoutes = [

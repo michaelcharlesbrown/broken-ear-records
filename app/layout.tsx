@@ -14,15 +14,15 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(PRIMARY_DOMAIN),
   title: {
     default: "Broken Ear Records",
     template: "%s | Broken Ear Records",
   },
-  description: "Broken Ear Records - Independent music label.",
+  description: "Independent record label based in Los Angeles.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -30,9 +30,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Broken Ear Records",
+    url: PRIMARY_DOMAIN,
     images: [
       {
-        url: "/og-default.png",
+        url: "/og/og-default.png",
         width: 1200,
         height: 630,
         alt: "Broken Ear Records",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-default.png"],
+    images: ["/og/og-default.png"],
   },
 };
 
