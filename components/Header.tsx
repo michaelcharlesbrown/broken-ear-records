@@ -43,15 +43,15 @@ export default function Header() {
     <header
       className={
         isHomepageOverlay
-          ? "fixed top-0 left-0 right-0 z-50 bg-transparent border-0 mix-blend-difference"
-          : "border-b"
+          ? "fixed top-0 left-0 right-0 z-50 bg-transparent border-0 mix-blend-difference text-white"
+          : "bg-black border-b border-white text-white"
       }
     >
       <Container
         className={
           isHomepageOverlay
-            ? "pt-0 pb-0 md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
-            : "pt-0 pb-0 md:py-4 flex flex-col md:flex-row md:justify-between md:items-center w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
+            ? "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
+            : "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
         }
       >
         <Link href="/" className="w-full md:w-auto">
