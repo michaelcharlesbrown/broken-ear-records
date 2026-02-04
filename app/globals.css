@@ -41,19 +41,38 @@ section p {
   text-transform: none !important;
 }
 
-/* Mobile header typography - title scales to fill viewport width (20 chars in "BROKEN EAR RECORDS", px-3 = 1.5rem total) */
+/* Mobile header typography - brutalist edge-to-edge (handled by JavaScript) */
 @media (max-width: 767px) {
   .mobile-site-title {
-    font-size: clamp(1rem, calc((100vw - 1.5rem) / 16 * 1.44), 2.5rem);
-    line-height: 1;
+    /* Font size is dynamically calculated by useBrutalistTypography hook */
+    line-height: 1 !important;
     letter-spacing: -0.02em;
+    width: 100%;
+    padding: 0 5px !important; /* Explicit minimal padding */
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
   }
   
-  /* Nav: 27 chars in "ARTISTS | RELEASES | ABOUT" */
   .mobile-nav-link {
-    font-size: clamp(0.75rem, calc((100vw - 1.5rem) / 27 * 1.814), 2.16rem);
-    line-height: 1;
+    /* Font size is dynamically calculated by useBrutalistTypography hook */
+    line-height: 1 !important;
     letter-spacing: -0.01em;
+    width: 100%;
+    padding: 0 5px !important; /* Explicit minimal padding */
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Ensure links inherit font size from parent */
+  .mobile-nav-link a {
+    font-size: inherit !important;
+  }
+  
+  /* Set homepage background to black on mobile to eliminate white line */
+  body:has(main > section.h-screen) {
+    background: #000000;
   }
 }
 

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import { typography } from "@/components/ui/Typography";
+import { useBrutalistTypography } from "@/components/hooks/useBrutalistTypography";
 
 export default function Header() {
   const pathname = usePathname();
@@ -13,6 +14,30 @@ export default function Header() {
   useEffect(() => {
     setIsHomepageOverlay(pathname === "/");
   }, [pathname]);
+
+  // Brutalist typography for mobile - site title
+  const {
+    elementRef: titleRef,
+  } = useBrutalistTypography<HTMLHeadingElement>("BROKEN EAR RECORDS", {
+    padding: 10, // 5px padding on each side
+    baseFontSize: 16,
+    minFontSize: 12,
+    maxFontSize: 200,
+    safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
+    debug: true, // Enable debugging
+  });
+
+  // Brutalist typography for mobile - navigation
+  const {
+    elementRef: navRef,
+  } = useBrutalistTypography<HTMLDivElement>("ARTISTS | RELEASES | ABOUT", {
+    padding: 10, // 5px padding on each side
+    baseFontSize: 14,
+    minFontSize: 10,
+    maxFontSize: 200,
+    safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
+    debug: true, // Enable debugging
+  });
 
   return (
     <header
@@ -25,21 +50,44 @@ export default function Header() {
       <Container
         className={
           isHomepageOverlay
-            ? "py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 px-3 md:max-w-[2000px] md:mx-auto md:px-6"
-            : "py-4 flex flex-col md:flex-row md:justify-between md:items-center w-full max-w-none mx-0 px-3 md:max-w-[2000px] md:mx-auto md:px-6"
+            ? "pt-0 pb-0 md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
+            : "pt-0 pb-0 md:py-4 flex flex-col md:flex-row md:justify-between md:items-center w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
         }
       >
         <Link href="/" className="w-full md:w-auto">
-          <h1 className={`${typography.siteTitle} whitespace-nowrap mobile-site-title`}>
+          <h1
+            ref={titleRef}
+            className={`${typography.siteTitle} whitespace-nowrap mobile-site-title`}
+          >
             BROKEN EAR RECORDS
           </h1>
         </Link>
-        <nav className="mt-2 md:mt-0 w-full md:w-auto">
-          <ul className="flex gap-2">
+        <nav className="mt-0 md:mt-0 w-full md:w-auto">
+          {/* Mobile nav - single line that fills width */}
+          <div className="md:hidden w-full">
+            <div
+              ref={navRef}
+              className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
+            >
+              <Link href="/artists" className="hover:underline">
+                ARTISTS
+              </Link>
+              {" | "}
+              <Link href="/releases" className="hover:underline">
+                RELEASES
+              </Link>
+              {" | "}
+              <Link href="/about" className="hover:underline">
+                ABOUT
+              </Link>
+            </div>
+          </div>
+          {/* Desktop nav - unchanged */}
+          <ul className="hidden md:flex gap-2">
             <li>
               <Link
                 href="/artists"
-                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
+                className={`${typography.navLink} whitespace-nowrap`}
               >
                 ARTISTS
               </Link>
@@ -48,7 +96,7 @@ export default function Header() {
             <li>
               <Link
                 href="/releases"
-                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
+                className={`${typography.navLink} whitespace-nowrap`}
               >
                 RELEASES
               </Link>
@@ -57,7 +105,7 @@ export default function Header() {
             <li>
               <Link
                 href="/about"
-                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
+                className={`${typography.navLink} whitespace-nowrap`}
               >
                 ABOUT
               </Link>

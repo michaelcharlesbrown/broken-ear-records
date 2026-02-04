@@ -62,6 +62,17 @@ export default function HeroVideo() {
     }
   }, []);
 
+  // Handle click to toggle play/pause
+  const handleVideoClick = () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  };
+
   // Don't render video until we know which source to use
   if (!videoSrc) {
     return null;
@@ -74,7 +85,8 @@ export default function HeroVideo() {
       muted
       loop
       playsInline
-      className="absolute inset-0 w-full h-full object-cover border-0 outline-0 block"
+      onClick={handleVideoClick}
+      className="absolute inset-0 w-full h-full object-cover border-0 outline-0 block cursor-pointer"
       style={{ margin: 0, padding: 0, display: 'block' }}
     >
       <source src={videoSrc} type="video/mp4" />
