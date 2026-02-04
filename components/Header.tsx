@@ -39,7 +39,7 @@ export default function Header() {
             <li>
               <Link
                 href="/artists"
-                className="hover:underline whitespace-nowrap mobile-nav-link"
+                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
               >
                 ARTISTS
               </Link>
@@ -48,7 +48,7 @@ export default function Header() {
             <li>
               <Link
                 href="/releases"
-                className="hover:underline whitespace-nowrap mobile-nav-link"
+                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
               >
                 RELEASES
               </Link>
@@ -57,7 +57,7 @@ export default function Header() {
             <li>
               <Link
                 href="/about"
-                className="hover:underline whitespace-nowrap mobile-nav-link"
+                className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
               >
                 ABOUT
               </Link>
