@@ -21,8 +21,8 @@ export default function HeroVideo() {
       ];
       
       selectedVideosRef.current = {
-        desktop: desktopVideos[Math.floor(Math.random() * desktopVideos.length)],
-        mobile: mobileVideos[Math.floor(Math.random() * mobileVideos.length)],
+        desktop: desktopVideos[0], // Always use v1 for now
+        mobile: mobileVideos[0], // Always use v1 for now
       };
     }
 
