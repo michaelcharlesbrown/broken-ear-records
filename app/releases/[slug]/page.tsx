@@ -80,7 +80,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
 
         {/* Right: All Content */}
         <div className="flex-1">
-          <h1 className={`${typography.h1} mb-2`}>{release.title}</h1>
+          <h2 className={`${typography.h2} mb-2`}>{release.title}</h2>
           <p className="text-lg text-gray-600 mb-4">
             {release.type} · {release.year}
           </p>
@@ -88,7 +88,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
             By{" "}
             <Link
               href={`/artists/${release.artistSlug}`}
-              className="text-blue-600 hover:underline"
+              className={`${typography.h2} text-blue-600 hover:underline inline-block`}
             >
               {artist?.name || release.artistSlug}
             </Link>

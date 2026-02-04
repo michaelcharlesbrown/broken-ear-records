@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Bebas_Neue } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/Header";
@@ -12,6 +12,12 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
@@ -57,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${ibmPlexMono.variable} ${bebasNeue.variable} antialiased flex flex-col min-h-screen`}
       >
         <Header />
         <main className="flex-1 border-0 outline-0 min-h-0">{children}</main>
@@ -65,7 +71,7 @@ export default function RootLayout({
           <Container className="py-20 md:py-24">
             <h2 className={`${typography.h1} text-center mb-2`}>JOIN THE LIST</h2>
             <p className="text-center mb-6">
-              SIGN UP TO HEAR ABOUT THE LATEST RELEASES FROM BROKEN EAR RECORDS.
+              Sign up to hear about the latest releases from Broken Ear Records.
             </p>
             <NewsletterSignup />
           </Container>

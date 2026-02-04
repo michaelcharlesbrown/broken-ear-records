@@ -93,7 +93,7 @@ export default async function ArtistDetail({ params }: PageProps) {
 
         {/* Right: All Content */}
         <div className="flex-1">
-          <h1 className={`${typography.h1} mb-6`}>{artist.name}</h1>
+          <h2 className={`${typography.h2} mb-6`}>{artist.name}</h2>
 
           <section className="mb-8">
             <p>{artist.fullBio}</p>
@@ -107,7 +107,7 @@ export default async function ArtistDetail({ params }: PageProps) {
                   <li key={release.slug}>
                     <Link
                       href={`/releases/${release.slug}`}
-                      className="text-blue-600 hover:underline"
+                      className={`${typography.h2} text-blue-600 hover:underline`}
                     >
                       {release.title}
                     </Link>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
+import { typography } from "@/components/ui/Typography";
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function Header() {
         }
       >
         <Link href="/" className="w-full md:w-auto">
-          <h1 className="font-bold whitespace-nowrap mobile-site-title md:text-2xl">
+          <h1 className={`${typography.siteTitle} whitespace-nowrap mobile-site-title`}>
             BROKEN EAR RECORDS
           </h1>
         </Link>

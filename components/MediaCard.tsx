@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { typography } from "@/components/ui/Typography";
 
 export interface MediaCardProps {
   href: string;
@@ -34,7 +35,7 @@ export default function MediaCard({
           className="w-full h-full object-cover rounded-none"
         />
       </div>
-      <h3 className="font-semibold text-lg mb-2">{title}</h3>
+      <h2 className={`${typography.h2} mb-2`}>{title}</h2>
       {description && (
         <p className={`text-sm text-gray-600 ${metadata ? "mb-1" : ""}`}>
           {description}

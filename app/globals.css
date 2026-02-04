@@ -9,6 +9,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-mono: var(--font-ibm-plex-mono);
+  --font-family-bebas-neue: var(--font-bebas-neue), sans-serif;
+}
+
+.font-bebas-neue {
+  font-family: var(--font-bebas-neue), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +27,18 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  text-transform: uppercase;
+  text-transform: none;
+}
+
+/* Ensure body copy is not uppercase */
+p,
+.prose p,
+.prose div,
+.prose span,
+.prose li,
+article p,
+section p {
+  text-transform: none !important;
 }
 
 /* Mobile header typography - title scales to fill viewport width (20 chars in "BROKEN EAR RECORDS", px-3 = 1.5rem total) */
