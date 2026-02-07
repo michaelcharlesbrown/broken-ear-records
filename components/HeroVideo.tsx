@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -73,9 +74,18 @@ export default function HeroVideo() {
     }
   };
 
-  // Don't render video until we know which source to use
+  // Show placeholder image while video source is being determined
   if (!videoSrc) {
-    return null;
+    return (
+      <Image
+        src="/images/figma/hero-image.png"
+        alt="Broken Ear Records"
+        fill
+        priority
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ margin: 0, padding: 0 }}
+      />
+    );
   }
 
   return (
@@ -86,6 +96,7 @@ export default function HeroVideo() {
       loop
       playsInline
       onClick={handleVideoClick}
+      poster="/images/figma/hero-image.png"
       className="absolute inset-0 w-full h-full object-cover border-0 outline-0 block cursor-pointer"
       style={{ margin: 0, padding: 0, display: 'block' }}
     >
