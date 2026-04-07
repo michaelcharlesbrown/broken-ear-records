@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { typography } from "@/components/ui/Typography";
 import HeroVideo from "@/components/HeroVideo";
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
@@ -34,6 +33,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section className="relative w-full h-screen overflow-hidden">
+      <h1 className="sr-only">Broken Ear Records</h1>
       <HeroVideo />
     </section>
   );

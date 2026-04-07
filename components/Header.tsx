@@ -1,11 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import { typography } from "@/components/ui/Typography";
 import { useBrutalistTypography } from "@/components/hooks/useBrutalistTypography";
+
+const LOGO_SRC = "/images/broken-ear-records-logo.png";
+const LOGO_WIDTH = 804;
+const LOGO_HEIGHT = 104;
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,24 +20,12 @@ export default function Header() {
     setIsHomepageOverlay(pathname === "/");
   }, [pathname]);
 
-  // Brutalist typography for mobile - site title
-  const {
-    elementRef: titleRef,
-  } = useBrutalistTypography<HTMLHeadingElement>("BROKEN EAR RECORDS", {
-    padding: 10, // 5px padding on each side
-    baseFontSize: 16,
-    minFontSize: 12,
-    maxFontSize: 200,
-    safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
-    debug: true, // Enable debugging
-  });
-
   // Brutalist typography for mobile - navigation
   const {
     elementRef: navRef,
   } = useBrutalistTypography<HTMLDivElement>("ARTISTS | RELEASES | ABOUT", {
     padding: 10, // 5px padding on each side
-    baseFontSize: 14,
+    baseFontSize: 32,
     minFontSize: 10,
     maxFontSize: 200,
     safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
@@ -54,13 +47,19 @@ export default function Header() {
             : "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
         }
       >
-        <Link href="/" className="w-full md:w-auto">
-          <h1
-            ref={titleRef}
-            className={`${typography.siteTitle} whitespace-nowrap mobile-site-title`}
-          >
-            BROKEN EAR RECORDS
-          </h1>
+        <Link
+          href="/"
+          className="relative inline-flex shrink-0 items-center self-start md:self-auto"
+        >
+          <Image
+            src={LOGO_SRC}
+            alt="Broken Ear Records"
+            width={LOGO_WIDTH}
+            height={LOGO_HEIGHT}
+            priority
+            className="h-[clamp(1.35rem,3.2vw,1.9rem)] w-auto md:h-[clamp(1.55rem,3.5vw,2.1rem)]"
+            sizes="(min-width: 768px) 220px, 180px"
+          />
         </Link>
         <nav className="mt-0 md:mt-0 w-full md:w-auto">
           {/* Mobile nav - single line that fills width */}
@@ -92,7 +91,7 @@ export default function Header() {
                 ARTISTS
               </Link>
             </li>
-            <li>|</li>
+            <li className="header-nav-link font-bebas-neue">|</li>
             <li>
               <Link
                 href="/releases"
@@ -101,7 +100,7 @@ export default function Header() {
                 RELEASES
               </Link>
             </li>
-            <li>|</li>
+            <li className="header-nav-link font-bebas-neue">|</li>
             <li>
               <Link
                 href="/about"

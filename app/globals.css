@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text-nav: 32px;
 }
 
 @theme inline {
@@ -14,6 +15,11 @@
 
 .font-bebas-neue {
   font-family: var(--font-bebas-neue), sans-serif;
+}
+
+/* Header primary nav — menu link size */
+.header-nav-link {
+  font-size: var(--text-nav);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,19 +47,8 @@ section p {
   text-transform: none !important;
 }
 
-/* Mobile header typography - brutalist edge-to-edge (handled by JavaScript) */
+/* Mobile header typography - brutalist edge-to-edge (nav handled by JavaScript) */
 @media (max-width: 767px) {
-  .mobile-site-title {
-    /* Font size is dynamically calculated by useBrutalistTypography hook */
-    line-height: 1 !important;
-    letter-spacing: -0.02em;
-    width: 100%;
-    padding: 0 5px !important; /* Explicit minimal padding */
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-  }
-  
   .mobile-nav-link {
     /* Font size is dynamically calculated by useBrutalistTypography hook */
     line-height: 1 !important;
