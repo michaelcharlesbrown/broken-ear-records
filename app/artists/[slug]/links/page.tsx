@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { artists } from "@/data/artists";
+import { artists, getArtistHeroSrc } from "@/data/artists";
 import { releases } from "@/data/releases";
 import ArtistLinksHub from "@/components/ArtistLinksHub";
+import ArtistPageShell from "@/components/artists/ArtistPageShell";
 
 interface PageProps {
   params: Promise<{
@@ -22,6 +23,8 @@ export async function generateMetadata({
     return {};
   }
 
+  const ogImage = getArtistHeroSrc(artist);
+
   return {
     title: `${artist.name} - Links`,
     description: `Links for ${artist.name} on Broken Ear Records.`,
@@ -34,10 +37,10 @@ export async function generateMetadata({
       url: `${PRIMARY_DOMAIN}/artists/${slug}/links`,
       images: [
         {
-          url: "/og/og-default.png",
+          url: ogImage,
           width: 1200,
           height: 630,
-          alt: "Broken Ear Records",
+          alt: artist.name,
         },
       ],
     },
@@ -45,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${artist.name} - Links | Broken Ear Records`,
       description: `Links for ${artist.name} on Broken Ear Records.`,
-      images: ["/og/og-default.png"],
+      images: [ogImage],
     },
   };
 }
@@ -58,16 +61,12 @@ export default async function ArtistLinks({ params }: PageProps) {
     notFound();
   }
 
-  // Get the first release for this artist to use as the cover image
   const artistReleases = releases.filter((r) => r.artistSlug === slug);
   const firstRelease = artistReleases[0];
-  
-  // Use the first release's cover image, or fall back to artist hero image
+
   const coverImage = firstRelease?.coverImage || artist.heroImage;
   const releaseTitle = firstRelease?.title || "Latest Release";
 
-  // Build consistent streaming platform links - always show these four platforms in this exact order
-  // All four platforms will always be present, using artist socials URLs
   const links = [
     { href: artist.socials.spotify || "#", label: "Spotify" },
     { href: artist.socials.website || "#", label: "Bandcamp" },
@@ -75,8 +74,6 @@ export default async function ArtistLinks({ params }: PageProps) {
     { href: artist.socials.youtube || "#", label: "YouTube Music" },
   ];
 
-  // Build social links for bottom icons - always show these three platforms in this order
-  // All three platforms will always be present, using artist socials URLs
   const socialLinks = [
     { href: artist.socials.instagram || "#", platform: "instagram" as const },
     { href: artist.socials.youtube || "#", platform: "youtube" as const },
@@ -84,14 +81,19 @@ export default async function ArtistLinks({ params }: PageProps) {
   ];
 
   return (
-    <ArtistLinksHub
+    <ArtistPageShell
+      heroSrc={getArtistHeroSrc(artist)}
       artistName={artist.name}
-      releaseTitle={releaseTitle}
-      coverImage={coverImage}
-      links={links}
-      socialLinks={socialLinks}
-      backHref={`/artists/${artist.slug}`}
-      backLabel="BROKEN EAR RECORDS"
-    />
+    >
+      <ArtistLinksHub
+        artistName={artist.name}
+        releaseTitle={releaseTitle}
+        coverImage={coverImage}
+        links={links}
+        socialLinks={socialLinks}
+        backHref={`/artists/${artist.slug}`}
+        backLabel="Back to artist"
+      />
+    </ArtistPageShell>
   );
 }

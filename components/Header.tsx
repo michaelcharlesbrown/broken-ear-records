@@ -14,10 +14,17 @@ const LOGO_HEIGHT = 104;
 
 export default function Header() {
   const pathname = usePathname();
-  // Set overlay only in useEffect so pathname is never used during initial render (avoids hydration mismatch)
-  const [isHomepageOverlay, setIsHomepageOverlay] = useState(false);
+  // Hero overlay: home + artist detail (full-bleed hero). Set in useEffect to avoid hydration mismatch.
+  const [isHeroOverlay, setIsHeroOverlay] = useState(false);
   useEffect(() => {
-    setIsHomepageOverlay(pathname === "/");
+    const isArtistDetail = /^\/artists\/[^/]+$/.test(pathname);
+    const isArtistLinks = /^\/artists\/[^/]+\/links$/.test(pathname);
+    setIsHeroOverlay(
+      pathname === "/" ||
+        pathname === "/about" ||
+        isArtistDetail ||
+        isArtistLinks
+    );
   }, [pathname]);
 
   // Brutalist typography for mobile - navigation
@@ -25,9 +32,9 @@ export default function Header() {
     elementRef: navRef,
   } = useBrutalistTypography<HTMLDivElement>("ARTISTS | RELEASES | ABOUT", {
     padding: 10, // 5px padding on each side
-    baseFontSize: 32,
+    baseFontSize: 22,
     minFontSize: 10,
-    maxFontSize: 200,
+    maxFontSize: 140,
     safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
     debug: true, // Enable debugging
   });
@@ -35,17 +42,15 @@ export default function Header() {
   return (
     <header
       className={
-        isHomepageOverlay
+        isHeroOverlay
           ? "fixed top-0 left-0 right-0 z-50 bg-transparent border-0 mix-blend-difference text-white"
-          : "bg-black border-b border-white text-white"
+          : "bg-transparent border-0 text-black"
       }
     >
       <Container
-        className={
-          isHomepageOverlay
-            ? "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6"
-            : "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6"
-        }
+        className={`pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center w-full max-w-none mx-0 !px-[5px] md:!px-6 ${
+          isHeroOverlay ? "text-white" : "text-black"
+        }`}
       >
         <Link
           href="/"
@@ -57,7 +62,9 @@ export default function Header() {
             width={LOGO_WIDTH}
             height={LOGO_HEIGHT}
             priority
-            className="h-[clamp(1.35rem,3.2vw,1.9rem)] w-auto md:h-[clamp(1.55rem,3.5vw,2.1rem)]"
+            className={`h-[clamp(1.35rem,3.2vw,1.9rem)] w-auto md:h-[clamp(1.55rem,3.5vw,2.1rem)]${
+              isHeroOverlay ? "" : " brightness-0"
+            }`}
             sizes="(min-width: 768px) 220px, 180px"
           />
         </Link>
@@ -68,21 +75,27 @@ export default function Header() {
               ref={navRef}
               className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
             >
-              <Link href="/artists" className="hover:underline">
+              <Link href="/artists">
                 ARTISTS
               </Link>
-              {" | "}
-              <Link href="/releases" className="hover:underline">
+              <span className="header-nav-separator" aria-hidden="true">
+                {" "}
+                |{" "}
+              </span>
+              <Link href="/releases">
                 RELEASES
               </Link>
-              {" | "}
-              <Link href="/about" className="hover:underline">
+              <span className="header-nav-separator" aria-hidden="true">
+                {" "}
+                |{" "}
+              </span>
+              <Link href="/about">
                 ABOUT
               </Link>
             </div>
           </div>
           {/* Desktop nav - unchanged */}
-          <ul className="hidden md:flex gap-2">
+          <ul className="hidden list-none md:flex md:items-center md:gap-2">
             <li>
               <Link
                 href="/artists"
@@ -91,7 +104,9 @@ export default function Header() {
                 ARTISTS
               </Link>
             </li>
-            <li className="header-nav-link font-bebas-neue">|</li>
+            <li className="header-nav-separator" aria-hidden="true">
+              |
+            </li>
             <li>
               <Link
                 href="/releases"
@@ -100,7 +115,9 @@ export default function Header() {
                 RELEASES
               </Link>
             </li>
-            <li className="header-nav-link font-bebas-neue">|</li>
+            <li className="header-nav-separator" aria-hidden="true">
+              |
+            </li>
             <li>
               <Link
                 href="/about"

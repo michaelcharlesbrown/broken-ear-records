@@ -27,7 +27,7 @@ export default function MediaCard({
 
   return (
     <Link href={href} className={cardClasses}>
-      <div className="aspect-square bg-gray-200 mb-4 overflow-hidden">
+      <div className="aspect-square bg-gray-200 mb-5 md:mb-6 overflow-hidden">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -36,13 +36,13 @@ export default function MediaCard({
           className="w-full h-full object-cover rounded-none"
         />
       </div>
-      <h2 className={`${typography.h2} mb-2`}>{title}</h2>
+      <h2 className={`${typography.h2} mb-3`}>{title}</h2>
       {description && (
-        <p className={`text-inherit text-black ${metadata ? "mb-1" : ""}`}>
+        <p className={`text-inherit text-black ${metadata ? "mb-2" : ""}`}>
           {description}
         </p>
       )}
-      {metadata && <div>{metadata}</div>}
+      {metadata && <div className="mt-1">{metadata}</div>}
     </Link>
   );
 }

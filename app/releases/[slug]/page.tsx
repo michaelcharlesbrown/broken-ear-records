@@ -78,9 +78,9 @@ export default async function ReleaseDetail({ params }: PageProps) {
           />
         </div>
 
-        {/* Right: All Content */}
+        {/* Right: album title + details */}
         <div className="flex-1">
-          <h2 className={`${typography.h2} mb-2 sr-only`}>{release.title}</h2>
+          <h1 className={`${typography.h1} mb-4`}>{release.title}</h1>
           <p className="text-inherit text-black mb-4">
             {release.type} · {release.year}
           </p>
@@ -88,7 +88,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
             By{" "}
             <Link
               href={`/artists/${release.artistSlug}`}
-              className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black hover:underline inline-block`}
+              className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block`}
             >
               {artist?.name || release.artistSlug}
             </Link>
@@ -100,7 +100,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
 
           {release.streamLinks.length > 0 && (
             <section className="mb-6">
-              <h2 className={`${typography.h2} mb-4`}>Stream Links</h2>
+              <h2 className={`${typography.h2} mb-4`}>Stream album</h2>
               <ul className="flex flex-col gap-2">
                 {release.streamLinks.map((link) => (
                   <li key={link.label}>
@@ -108,7 +108,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black underline-offset-2 hover:underline"
+                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
                     >
                       {link.label}
                     </a>
@@ -120,7 +120,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
 
           {release.buyLinks.length > 0 && (
             <section>
-              <h2 className={`${typography.h2} mb-4`}>Buy Links</h2>
+              <h2 className={`${typography.h2} mb-4`}>Buy album</h2>
               <ul className="flex flex-col gap-2">
                 {release.buyLinks.map((link) => (
                   <li key={link.label}>
@@ -128,7 +128,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black underline-offset-2 hover:underline"
+                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
                     >
                       {link.label}
                     </a>

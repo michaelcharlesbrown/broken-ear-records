@@ -5,6 +5,8 @@ export interface Artist {
   shortBio: string;
   fullBio: string;
   images: {
+    /** Full-bleed hero at top of artist detail page */
+    pageHero?: string;
     hero?: string;
     portrait?: string;
   };
@@ -19,6 +21,11 @@ export interface Artist {
   releases: string[];
 }
 
+/** Full-bleed hero used by all artist routes (detail, links, metadata). */
+export function getArtistHeroSrc(artist: Artist): string {
+  return artist.images.pageHero ?? artist.images.hero ?? artist.heroImage;
+}
+
 export const artists: Artist[] = [
   {
     name: "Red Moon Apostles",
@@ -27,6 +34,7 @@ export const artists: Artist[] = [
     shortBio: "Red Moon Apostles is a dynamic musical ensemble known for their innovative sound.",
     fullBio: "Red Moon Apostles is a dynamic musical ensemble known for their innovative sound. With a unique blend of genres and a commitment to pushing creative boundaries, they have established themselves as a prominent force in the independent music scene. Their performances captivate audiences with powerful melodies and thought-provoking lyrics.",
     images: {
+      pageHero: "/images/rma/rma-hero.jpg",
       hero: "/images/rma/red-moon-apostles.jpg",
       portrait: "/images/rma/red-moon-apostles.jpg",
     },
@@ -46,6 +54,7 @@ export const artists: Artist[] = [
     shortBio: "Mad Denizen brings a unique blend of genres to create an unforgettable experience.",
     fullBio: "Mad Denizen brings a unique blend of genres to create an unforgettable experience. Their music defies categorization, seamlessly weaving together elements from various musical traditions. With each release, they continue to evolve and surprise listeners with their creative vision and technical prowess.",
     images: {
+      pageHero: "/images/md/md-hero.jpg",
       hero: "/images/md/mad-denizen.jpg",
       portrait: "/images/md/mad-denizen.jpg",
     },
@@ -63,6 +72,7 @@ export const artists: Artist[] = [
     shortBio: "Booming Dunes delivers powerful performances that resonate with audiences worldwide.",
     fullBio: "Booming Dunes delivers powerful performances that resonate with audiences worldwide. Their music combines raw energy with sophisticated arrangements, creating a sound that is both accessible and deeply meaningful. They have built a dedicated following through their authentic approach and compelling live shows.",
     images: {
+      pageHero: "/images/bd/bd-hero.jpg",
       hero: "/images/bd/booming-dunes.jpg",
       portrait: "/images/bd/booming-dunes.jpg",
     },

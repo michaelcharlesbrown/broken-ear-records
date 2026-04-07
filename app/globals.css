@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --text-nav: 32px;
+  --text-nav: 22px;
   --text-body-copy: 12px;
   --text-headline: 24px;
 }
@@ -53,9 +53,39 @@ html {
   font-family: var(--font-bebas-neue), sans-serif;
 }
 
-/* Header primary nav — menu link size */
-.header-nav-link {
+/*
+ * Header primary navigation
+ * Links: Bebas Neue at --text-nav. Separators (|): IBM Plex Mono at the same
+ * font-size — Bebas’s pipe glyph is drawn taller than cap height, so it reads
+ * oversized next to wordmarks; mono bars align to the nav scale.
+ */
+header nav .header-nav-link {
   font-size: var(--text-nav);
+  line-height: 1.25;
+  font-family: var(--font-bebas-neue), sans-serif;
+}
+
+header nav .header-nav-separator {
+  font-size: var(--text-nav);
+  line-height: 1.25;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0;
+  user-select: none;
+}
+
+/* Mobile brutalist nav: links inherit JS-scaled size from .mobile-nav-link */
+header nav .mobile-nav-link a {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+header nav .mobile-nav-link .header-nav-separator {
+  font-size: inherit;
+  line-height: inherit;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -82,11 +112,6 @@ body {
   h4,
   h5,
   h6 {
-    font-size: var(--text-headline);
-    line-height: 1.25;
-  }
-
-  header nav a {
     font-size: var(--text-headline);
     line-height: 1.25;
   }

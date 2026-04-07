@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { artists } from "@/data/artists";
+import { artists, getArtistHeroSrc } from "@/data/artists";
 import { releases } from "@/data/releases";
 import LinkButton from "@/components/LinkButton";
-import Container from "@/components/ui/Container";
+import ArtistPageShell from "@/components/artists/ArtistPageShell";
 import { typography } from "@/components/ui/Typography";
 
 interface PageProps {
@@ -38,10 +38,10 @@ export async function generateMetadata({
       url: `${PRIMARY_DOMAIN}/artists/${slug}`,
       images: [
         {
-          url: "/og/og-default.png",
+          url: getArtistHeroSrc(artist),
           width: 1200,
           height: 630,
-          alt: "Broken Ear Records",
+          alt: artist.name,
         },
       ],
     },
@@ -49,7 +49,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${artist.name} | Broken Ear Records`,
       description: artist.shortBio,
-      images: ["/og/og-default.png"],
+      images: [getArtistHeroSrc(artist)],
     },
   };
 }
@@ -62,10 +62,8 @@ export default async function ArtistDetail({ params }: PageProps) {
     notFound();
   }
 
-  // Get releases for this artist
   const artistReleases = releases.filter((r) => artist.releases.includes(r.slug));
 
-  // Build links from socials
   const links = [
     artist.socials.website && { href: artist.socials.website, label: "Website" },
     artist.socials.spotify && { href: artist.socials.spotify, label: "Spotify" },
@@ -77,9 +75,11 @@ export default async function ArtistDetail({ params }: PageProps) {
   ].filter(Boolean) as Array<{ href: string; label: string }>;
 
   return (
-    <Container className="py-8">
+    <ArtistPageShell
+      heroSrc={getArtistHeroSrc(artist)}
+      artistName={artist.name}
+    >
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-        {/* Left: Larger Image */}
         <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden">
           <Image
             src={artist.images.portrait || artist.heroImage}
@@ -87,13 +87,11 @@ export default async function ArtistDetail({ params }: PageProps) {
             width={800}
             height={800}
             className="w-full h-auto object-cover rounded-none"
-            priority
           />
         </div>
 
-        {/* Right: All Content */}
-        <div className="flex-1">
-          <h2 className={`${typography.h2} mb-6 sr-only`}>{artist.name}</h2>
+        <div className="flex-1 flex flex-col">
+          <h1 className={`${typography.h1} mb-6`}>{artist.name}</h1>
 
           <section className="mb-8">
             <p>{artist.fullBio}</p>
@@ -101,13 +99,13 @@ export default async function ArtistDetail({ params }: PageProps) {
 
           {artistReleases.length > 0 && (
             <section className="mb-8">
-              <h2 className={typography.h2}>Releases</h2>
+              <h2 className={`${typography.sectionLabel} mb-4`}>Releases</h2>
               <ul>
                 {artistReleases.map((release) => (
                   <li key={release.slug}>
                     <Link
                       href={`/releases/${release.slug}`}
-                      className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black hover:underline`}
+                      className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black`}
                     >
                       {release.title}
                     </Link>
@@ -119,8 +117,7 @@ export default async function ArtistDetail({ params }: PageProps) {
 
           {links.length > 0 && (
             <section>
-              <h2 className={typography.h2}>Links</h2>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
                 {links.map((link) => (
                   <LinkButton
                     key={link.label}
@@ -128,7 +125,7 @@ export default async function ArtistDetail({ params }: PageProps) {
                     label={link.label}
                     external={true}
                     artist={artist.name}
-                    className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black hover:underline inline-block"
+                    className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block"
                   />
                 ))}
               </div>
@@ -136,6 +133,6 @@ export default async function ArtistDetail({ params }: PageProps) {
           )}
         </div>
       </div>
-    </Container>
+    </ArtistPageShell>
   );
 }

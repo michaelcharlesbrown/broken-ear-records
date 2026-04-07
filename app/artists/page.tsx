@@ -35,9 +35,9 @@ export const metadata: Metadata = {
 
 export default function Artists() {
   return (
-    <Container className="py-8">
+    <Container className="px-5 py-12 md:px-8 md:py-16 lg:px-10 lg:py-20">
       <h1 className={`${typography.h1} mb-6 sr-only`}>Artists</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-14">
         {artists.map((artist) => (
           <MediaCard
             key={artist.slug}
@@ -45,7 +45,6 @@ export default function Artists() {
             imageSrc={artist.images.portrait || artist.heroImage}
             imageAlt={artist.name}
             title={artist.name}
-            description={artist.shortBio}
             variant="artist"
           />
         ))}

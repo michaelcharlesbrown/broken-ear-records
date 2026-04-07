@@ -61,6 +61,10 @@ export default function NewsletterSignup() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch">
+      <p className="mb-4 w-full max-w-none text-justify text-base uppercase leading-snug tracking-wide text-white [text-align-last:justify]">
+        Sign up to hear about the latest releases from Broken Ear Records.
+      </p>
+
       <form
         onSubmit={handleSubmit}
         className="grid w-full min-w-0 grid-cols-[7fr_3fr] border border-white"
@@ -82,10 +86,6 @@ export default function NewsletterSignup() {
           {state === "loading" ? "Subscribing…" : "Subscribe"}
         </button>
       </form>
-
-      <p className="mt-3 w-full max-w-none text-justify text-base uppercase leading-snug tracking-wide text-white [text-align-last:justify]">
-        Sign up to hear about the latest releases from Broken Ear Records.
-      </p>
 
       {state === "error" && errorMessage && (
         <p className="mt-3 text-left text-base normal-case text-white">

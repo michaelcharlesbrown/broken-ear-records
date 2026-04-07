@@ -62,10 +62,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col min-h-screen`}
+        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col`}
       >
-        <Header />
-        <main className="flex-1 border-0 outline-0 min-h-0">{children}</main>
+        {/* Light area (header + main) fills 90% of viewport; footer begins below */}
+        <div className="flex min-h-[90dvh] flex-col">
+          <Header />
+          <main className="flex min-h-0 flex-1 flex-col border-0 outline-0 bg-background">
+            {children}
+          </main>
+        </div>
         <footer className="flex min-h-screen w-full flex-col items-center justify-center bg-black text-white border-0 outline-0 border-t-0">
           <Container className="flex w-full justify-center py-0">
             <NewsletterSignup />

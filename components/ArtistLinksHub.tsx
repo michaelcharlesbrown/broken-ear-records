@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { typography } from "@/components/ui/Typography";
 
 interface PlatformLink {
   href: string;
@@ -75,36 +76,28 @@ export default function ArtistLinksHub({
   backLabel,
 }: ArtistLinksHubProps) {
   return (
-    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm flex flex-col items-center bg-black overflow-hidden">
-        {/* Album Cover */}
-        <div className="w-full relative">
-          <div className="relative border-b border-red-600 overflow-hidden">
-            <Image
-              src={coverImage}
-              alt={releaseTitle}
-              width={400}
-              height={400}
-              className="w-full h-auto object-cover block rounded-none"
-              priority
-            />
-          </div>
+    <div className="w-full max-w-md mx-auto flex flex-col border border-black bg-background overflow-hidden">
+      <div className="w-full relative">
+        <div className="relative border-b border-black overflow-hidden">
+          <Image
+            src={coverImage}
+            alt={releaseTitle}
+            width={400}
+            height={400}
+            className="w-full h-auto object-cover block rounded-none"
+            priority
+          />
         </div>
-        
-        <div className="w-full flex flex-col items-center p-8">
+      </div>
 
-          {/* Artist Name */}
-          <h2 className="mb-2 text-center font-bold uppercase leading-tight tracking-tight text-white">
-            {artistName}
-          </h2>
+      <div className="w-full flex flex-col items-stretch p-8">
+        <h1 className={`${typography.h1} mb-2 text-center`}>{artistName}</h1>
 
-          {/* Release Title */}
-          <h1 className="mb-10 text-center font-normal uppercase italic leading-tight tracking-tight text-white">
-            &ldquo;{releaseTitle}&rdquo;
-          </h1>
+        <p className="mb-10 text-center font-mono uppercase text-base leading-tight tracking-wide text-black">
+          &ldquo;{releaseTitle}&rdquo;
+        </p>
 
-          {/* Platform Links */}
-          <div className="w-full space-y-2.5 mb-8">
+        <div className="w-full space-y-2.5 mb-8">
           {links.map((link, index) => {
             const logoPath = platformLogos[link.label] || null;
             return (
@@ -113,7 +106,7 @@ export default function ArtistLinksHub({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-between bg-[#1a1a1a] border border-gray-400 rounded-md px-4 py-3 text-white hover:bg-[#252525] hover:border-gray-300 transition-all"
+                className="w-full flex items-center justify-between rounded border border-black bg-background px-4 py-3 text-black transition-colors hover:bg-gray-50"
               >
                 <div className="flex items-center">
                   {logoPath ? (
@@ -132,12 +125,12 @@ export default function ArtistLinksHub({
                       }`}
                     />
                   ) : (
-                    <span className="text-white text-sm font-normal">
+                    <span className="text-black text-sm font-normal font-mono uppercase">
                       {link.label}
                     </span>
                   )}
                 </div>
-                <div className="flex items-center text-white text-sm font-normal">
+                <div className="flex items-center text-black text-sm font-normal font-mono uppercase">
                   PLAY
                   <PlayIcon />
                 </div>
@@ -146,32 +139,29 @@ export default function ArtistLinksHub({
           })}
         </div>
 
-          {/* Social Icons - always show Instagram, YouTube, TikTok */}
-          <div className="flex items-center gap-4 mb-6">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:opacity-70 transition-opacity"
-                aria-label={social.platform}
-              >
-                {social.platform === "instagram" && <InstagramIcon />}
-                {social.platform === "youtube" && <YouTubeIcon />}
-                {social.platform === "tiktok" && <TikTokIcon />}
-              </a>
-            ))}
-          </div>
-
-          {/* Back Link */}
-          <Link
-            href={backHref}
-            className="text-white text-xs hover:underline opacity-70"
-          >
-            {backLabel}
-          </Link>
+        <div className="flex items-center justify-center gap-4 mb-6 text-black">
+          {socialLinks.map((social, index) => (
+            <a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-70 transition-opacity"
+              aria-label={social.platform}
+            >
+              {social.platform === "instagram" && <InstagramIcon />}
+              {social.platform === "youtube" && <YouTubeIcon />}
+              {social.platform === "tiktok" && <TikTokIcon />}
+            </a>
+          ))}
         </div>
+
+        <Link
+          href={backHref}
+          className="text-center font-mono text-xs uppercase tracking-wide text-black opacity-80 hover:opacity-100"
+        >
+          {backLabel}
+        </Link>
       </div>
     </div>
   );
