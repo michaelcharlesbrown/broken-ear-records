@@ -5,7 +5,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/Header";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import Container from "@/components/ui/Container";
-import { typography } from "@/components/ui/Typography";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -63,16 +62,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexMono.variable} ${bebasNeue.variable} antialiased flex flex-col min-h-screen`}
+        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col min-h-screen`}
       >
         <Header />
         <main className="flex-1 border-0 outline-0 min-h-0">{children}</main>
-        <footer className="bg-black text-white border-0 outline-0 border-t-0">
-          <Container className="py-20 md:py-24">
-            <h2 className={`${typography.h1} text-center mb-2`}>JOIN THE LIST</h2>
-            <p className="text-center mb-6">
-              Sign up to hear about the latest releases from Broken Ear Records.
-            </p>
+        <footer className="flex min-h-screen w-full flex-col items-center justify-center bg-black text-white border-0 outline-0 border-t-0">
+          <Container className="flex w-full justify-center py-0">
             <NewsletterSignup />
           </Container>
         </footer>

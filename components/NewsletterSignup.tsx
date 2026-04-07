@@ -34,14 +34,13 @@ export default function NewsletterSignup() {
 
       if (data.ok) {
         setState("success");
-        // Extract email domain for tracking
         const emailDomain = email.split("@")[1] || "";
         console.log("newsletter_signup", { email_domain: emailDomain });
       } else {
         setState("error");
         setErrorMessage(data.error || "Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setState("error");
       setErrorMessage("Something went wrong. Please try again.");
     }
@@ -49,34 +48,49 @@ export default function NewsletterSignup() {
 
   if (state === "success") {
     return (
-      <div className="text-center">
-        <h2 className="text-2xl font-bold mb-2">THANK YOU</h2>
-        <p>You are signed up for the email list.</p>
+      <div className="mx-auto w-full max-w-2xl text-center normal-case">
+        <h2 className="mb-2 font-bold text-white">
+          Thank you
+        </h2>
+        <p className="text-inherit text-white/90">
+          You are signed up for the email list.
+        </p>
       </div>
     );
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-0 max-w-[380px] mx-auto px-4">
+    <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch">
+      <form
+        onSubmit={handleSubmit}
+        className="grid w-full min-w-0 grid-cols-[7fr_3fr] border border-white"
+      >
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={state === "loading"}
-          className="flex-1 px-4 py-2 border border-white bg-black text-white placeholder-gray-400 disabled:opacity-50 min-w-0"
+          autoComplete="email"
+          className="min-w-0 border-0 border-r border-white bg-black px-4 py-3 font-mono text-inherit normal-case placeholder:text-gray-400 placeholder:normal-case focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={state === "loading"}
-          className="px-4 py-2 border border-white sm:border-l-0 bg-black text-white hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+          className="min-w-0 whitespace-nowrap border-0 bg-black px-3 py-3 font-mono text-inherit font-normal normal-case text-white transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {state === "loading" ? "Subscribing..." : "Subscribe"}
+          {state === "loading" ? "Subscribing…" : "Subscribe"}
         </button>
       </form>
+
+      <p className="mt-3 w-full max-w-none text-justify text-base uppercase leading-snug tracking-wide text-white [text-align-last:justify]">
+        Sign up to hear about the latest releases from Broken Ear Records.
+      </p>
+
       {state === "error" && errorMessage && (
-        <p className="text-center mt-4 text-red-300 px-4">{errorMessage}</p>
+        <p className="mt-3 text-left text-base normal-case text-white">
+          {errorMessage}
+        </p>
       )}
     </div>
   );

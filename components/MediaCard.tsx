@@ -22,7 +22,8 @@ export default function MediaCard({
   metadata,
 }: MediaCardProps) {
   // Consistent card styling across all variants
-  const cardClasses = "block border-0 !p-0 hover:shadow-none";
+  const cardClasses =
+    "block border-0 !p-0 hover:shadow-none text-black hover:text-black visited:text-black active:text-black";
 
   return (
     <Link href={href} className={cardClasses}>
@@ -37,7 +38,7 @@ export default function MediaCard({
       </div>
       <h2 className={`${typography.h2} mb-2`}>{title}</h2>
       {description && (
-        <p className={`text-sm text-gray-600 ${metadata ? "mb-1" : ""}`}>
+        <p className={`text-inherit text-black ${metadata ? "mb-1" : ""}`}>
           {description}
         </p>
       )}

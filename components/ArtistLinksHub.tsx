@@ -94,12 +94,12 @@ export default function ArtistLinksHub({
         <div className="w-full flex flex-col items-center p-8">
 
           {/* Artist Name */}
-          <h2 className="text-white font-bold text-lg uppercase mb-2 text-center tracking-tight">
+          <h2 className="mb-2 text-center font-bold uppercase leading-tight tracking-tight text-white">
             {artistName}
           </h2>
 
           {/* Release Title */}
-          <h1 className="text-white font-normal text-lg uppercase italic mb-10 text-center tracking-tight">
+          <h1 className="mb-10 text-center font-normal uppercase italic leading-tight tracking-tight text-white">
             &ldquo;{releaseTitle}&rdquo;
           </h1>
 
@@ -113,7 +113,7 @@ export default function ArtistLinksHub({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-between bg-[#1a1a1a] border border-gray-400 rounded-md px-4 py-3 hover:bg-[#252525] hover:border-gray-300 transition-all"
+                className="w-full flex items-center justify-between bg-[#1a1a1a] border border-gray-400 rounded-md px-4 py-3 text-white hover:bg-[#252525] hover:border-gray-300 transition-all"
               >
                 <div className="flex items-center">
                   {logoPath ? (

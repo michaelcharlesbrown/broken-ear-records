@@ -80,15 +80,15 @@ export default async function ReleaseDetail({ params }: PageProps) {
 
         {/* Right: All Content */}
         <div className="flex-1">
-          <h2 className={`${typography.h2} mb-2`}>{release.title}</h2>
-          <p className="text-lg text-gray-600 mb-4">
+          <h2 className={`${typography.h2} mb-2 sr-only`}>{release.title}</h2>
+          <p className="text-inherit text-black mb-4">
             {release.type} · {release.year}
           </p>
           <p className="mb-6">
             By{" "}
             <Link
               href={`/artists/${release.artistSlug}`}
-              className={`${typography.h2} text-blue-600 hover:underline inline-block`}
+              className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black hover:underline inline-block`}
             >
               {artist?.name || release.artistSlug}
             </Link>
@@ -108,7 +108,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black underline-offset-2 hover:underline"
                     >
                       {link.label}
                     </a>
@@ -128,7 +128,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black underline-offset-2 hover:underline"
                     >
                       {link.label}
                     </a>

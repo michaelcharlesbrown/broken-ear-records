@@ -18,7 +18,9 @@ export default function LinksHub({
   return (
     <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-[#2a2a2a] rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold mb-6 text-center text-white">{title}</h1>
+        <h1 className="mb-6 text-center font-bold text-white">
+          {title}
+        </h1>
         <div className="space-y-3 mb-6">
           {links.map((link, index) => (
             <LinkButton

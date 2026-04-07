@@ -1,8 +1,8 @@
 export const typography = {
   navLink: "header-nav-link font-bebas-neue hover:underline",
-  h1: "text-4xl font-bebas-neue",
-  h2: "text-3xl font-bebas-neue",
-  h3: "text-xl font-bebas-neue",
-  body: "text-base",
-  label: "text-sm uppercase tracking-wide",
+  h1: "font-bebas-neue leading-tight",
+  h2: "font-bebas-neue leading-tight",
+  h3: "font-bebas-neue leading-tight",
+  body: "font-mono uppercase text-inherit",
+  label: "text-base uppercase tracking-wide",
 };

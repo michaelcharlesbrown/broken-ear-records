@@ -43,8 +43,8 @@ export default function Header() {
       <Container
         className={
           isHomepageOverlay
-            ? "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
-            : "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6 md:max-w-[2000px] md:mx-auto"
+            ? "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6"
+            : "pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center text-white w-full max-w-none mx-0 !px-[5px] md:!px-6"
         }
       >
         <Link

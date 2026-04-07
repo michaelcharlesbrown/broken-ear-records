@@ -8,7 +8,8 @@ interface CardProps {
 }
 
 export default function Card({ children, href, className = "" }: CardProps) {
-  const cardClasses = "border rounded p-4 hover:shadow-md transition-shadow";
+  const cardClasses =
+    "border rounded p-4 text-black hover:text-black visited:text-black active:text-black hover:shadow-md transition-shadow";
   const finalClassName = `${cardClasses} ${className}`;
 
   if (href) {

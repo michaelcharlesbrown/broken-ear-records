@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function Releases() {
   return (
     <Container className="py-8">
-      <h1 className={`${typography.h1} mb-6`}>Releases</h1>
+      <h1 className={`${typography.h1} mb-6 sr-only`}>Releases</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {releases.map((release) => {
           const artist = artists.find((a) => a.slug === release.artistSlug);
@@ -51,7 +51,7 @@ export default function Releases() {
               description={artist?.name || release.artistSlug}
               variant="release"
               metadata={
-                <p className="text-sm text-gray-500">
+                <p className="text-inherit text-black">
                   {release.type} · {release.year}
                 </p>
               }

@@ -36,8 +36,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <Container maxWidth="max-w-3xl" className="py-8">
-      <h1 className={`${typography.h1} mb-6`}>About</h1>
+    <Container className="py-8">
+      <h1 className={`${typography.h1} mb-6 sr-only`}>About</h1>
       <div className="prose prose-lg">
         <p className="mb-4">
           Broken Ear Records is an independent label based in Los Angeles,

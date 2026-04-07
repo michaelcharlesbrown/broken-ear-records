@@ -4,13 +4,49 @@
   --background: #ffffff;
   --foreground: #171717;
   --text-nav: 32px;
+  --text-body-copy: 12px;
+  --text-headline: 24px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-mono: var(--font-ibm-plex-mono);
+  /* Default text stack: IBM Plex Mono (same as mono; headings override with font-bebas-neue) */
+  --font-sans: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
   --font-family-bebas-neue: var(--font-bebas-neue), sans-serif;
+
+  /* Uniform 12px type scale site-wide */
+  --text-xs: 12px;
+  --text-xs--line-height: 1.25;
+  --text-sm: 12px;
+  --text-sm--line-height: 1.25;
+  --text-base: 12px;
+  --text-base--line-height: 1.25;
+  --text-lg: 12px;
+  --text-lg--line-height: 1.25;
+  --text-xl: 12px;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 12px;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 12px;
+  --text-3xl--line-height: 1.25;
+  --text-4xl: 12px;
+  --text-4xl--line-height: 1.25;
+  --text-5xl: 12px;
+  --text-5xl--line-height: 1.25;
+  --text-6xl: 12px;
+  --text-6xl--line-height: 1.25;
+  --text-7xl: 12px;
+  --text-7xl--line-height: 1.25;
+  --text-8xl: 12px;
+  --text-8xl--line-height: 1.25;
+  --text-9xl: 12px;
+  --text-9xl--line-height: 1.25;
+}
+
+html {
+  font-size: 12px;
 }
 
 .font-bebas-neue {
@@ -33,18 +69,44 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-  text-transform: none;
+  font-size: var(--text-body-copy);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-/* Ensure body copy is not uppercase */
-p,
-.prose p,
-.prose div,
-.prose span,
-.prose li,
-article p,
-section p {
-  text-transform: none !important;
+/* Main content links: black in all states (header/footer are outside main; dark UIs use text-white on links to override) */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: var(--text-headline);
+    line-height: 1.25;
+  }
+
+  header nav a {
+    font-size: var(--text-headline);
+    line-height: 1.25;
+  }
+
+  /* Headline-styled links (e.g. Next.js Link with typography.h2, not a real h2) */
+  main a.font-bebas-neue {
+    font-size: var(--text-headline);
+    line-height: 1.25;
+  }
+
+  main a {
+    color: #000000;
+  }
+
+  main a:hover,
+  main a:focus-visible,
+  main a:active,
+  main a:visited {
+    color: #000000;
+  }
 }
 
 /* Mobile header typography - brutalist edge-to-edge (nav handled by JavaScript) */

@@ -19,7 +19,7 @@ export default function LinkButton({
   className,
 }: LinkButtonProps) {
   const defaultClassName =
-    "w-full block text-center py-4 px-6 border rounded hover:bg-gray-50 transition-colors";
+    "w-full block text-center py-4 px-6 border rounded text-black hover:bg-gray-50 hover:text-black focus-visible:text-black active:text-black visited:text-black transition-colors";
   const finalClassName = className || defaultClassName;
 
   const handleClick = () => {
