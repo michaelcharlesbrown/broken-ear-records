@@ -31,7 +31,7 @@ export default function ArtistPageShell({
           sizes="100vw"
         />
       </section>
-      <Container className="py-8">{children}</Container>
+      <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">{children}</Container>
     </>
   );
 }

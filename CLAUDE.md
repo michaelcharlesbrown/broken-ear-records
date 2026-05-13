@@ -9,6 +9,18 @@
 
 ---
 
+## Workflow
+
+Always work directly on the `main` branch. Edit files in the project root
+(`/Users/mcb/Documents/Projects/broken-ear-records/`). Do not use git
+worktrees — the dev server watches the project root, not worktrees, so edits
+made in a worktree will not appear on localhost.
+
+If Claude Code opens a worktree session, make all edits to the corresponding
+files in the project root instead.
+
+---
+
 ## Dev Server
 
 Port: 3001 — already running. Do not touch it.

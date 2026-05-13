@@ -64,8 +64,8 @@ export default async function ReleaseDetail({ params }: PageProps) {
   const artist = artists.find((a) => a.slug === release.artistSlug);
 
   return (
-    <Container className="py-8">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+    <Container className="py-24 md:py-32 min-h-[80vh] flex items-center" maxWidth="w-full max-w-[1400px]">
+      <div className="w-full flex flex-col md:flex-row gap-8 md:gap-12 items-start">
         {/* Left: Larger Image */}
         <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden">
           <Image
