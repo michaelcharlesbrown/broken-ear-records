@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Bebas_Neue } from "next/font/google";
+import { IBM_Plex_Mono, Bebas_Neue, Special_Elite } from "next/font/google";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/Header";
@@ -15,6 +15,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const specialElite = Special_Elite({
+  variable: "--font-special-elite",
   subsets: ["latin"],
   weight: ["400"],
 });
@@ -62,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col`}
+        className={`${ibmPlexMono.variable} ${bebasNeue.variable} ${specialElite.variable} antialiased flex flex-col`}
       >
         {/* Light area (header + main) fills 90% of viewport; footer begins below */}
         <div className="flex min-h-[90dvh] flex-col">
