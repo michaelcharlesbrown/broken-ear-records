@@ -44,7 +44,7 @@ export default function Header() {
       className={
         isHeroOverlay
           ? "fixed top-0 left-0 right-0 z-50 bg-transparent border-0 mix-blend-difference text-white"
-          : "bg-white border-0 text-black"
+          : "bg-transparent border-0 text-black"
       }
     >
       <Container

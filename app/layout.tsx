@@ -70,17 +70,18 @@ export default function RootLayout({
       <body
         className={`${ibmPlexMono.variable} ${bebasNeue.variable} ${specialElite.variable} antialiased flex flex-col`}
       >
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col min-h-screen">
+        {/* Light area (header + main) fills 90% of viewport; footer begins below */}
+        <div className="flex min-h-[90dvh] flex-col">
           <Header />
           <main className="flex min-h-0 flex-1 flex-col border-0 outline-0 bg-background">
             {children}
           </main>
-          <footer className="flex flex-col items-center justify-center bg-black text-white border-0 outline-0">
-            <Container className="flex w-full justify-center py-16">
-              <NewsletterSignup />
-            </Container>
-          </footer>
         </div>
+        <footer className="flex min-h-screen w-full flex-col items-center justify-center bg-black text-white border-0 outline-0 border-t-0">
+          <Container className="flex w-full justify-center py-0">
+            <NewsletterSignup />
+          </Container>
+        </footer>
         {gaMeasurementId && <GoogleAnalytics gaId={gaMeasurementId} />}
         {metaPixelId && (
           <>
