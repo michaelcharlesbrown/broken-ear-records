@@ -82,7 +82,6 @@ export default async function ArtistLinks({ params }: PageProps) {
 
   return (
     <ArtistPageShell
-      heroSrc={getArtistHeroSrc(artist)}
       artistName={artist.name}
     >
       <ArtistLinksHub

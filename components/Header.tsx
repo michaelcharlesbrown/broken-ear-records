@@ -17,14 +17,7 @@ export default function Header() {
   // Hero overlay: home + artist detail (full-bleed hero). Set in useEffect to avoid hydration mismatch.
   const [isHeroOverlay, setIsHeroOverlay] = useState(false);
   useEffect(() => {
-    const isArtistDetail = /^\/artists\/[^/]+$/.test(pathname);
-    const isArtistLinks = /^\/artists\/[^/]+\/links$/.test(pathname);
-    setIsHeroOverlay(
-      pathname === "/" ||
-        pathname === "/about" ||
-        isArtistDetail ||
-        isArtistLinks
-    );
+    setIsHeroOverlay(false);
   }, [pathname]);
 
   // Brutalist typography for mobile - navigation
@@ -43,7 +36,7 @@ export default function Header() {
     <header
       className={
         isHeroOverlay
-          ? "fixed top-0 left-0 right-0 z-50 bg-transparent border-0 mix-blend-difference text-white"
+          ? "sticky top-0 z-50 bg-transparent border-0 mix-blend-difference text-white"
           : "bg-transparent border-0 text-black"
       }
     >
@@ -85,13 +78,6 @@ export default function Header() {
               <Link href="/releases">
                 RELEASES
               </Link>
-              <span className="header-nav-separator" aria-hidden="true">
-                {" "}
-                |{" "}
-              </span>
-              <Link href="/about">
-                ABOUT
-              </Link>
             </div>
           </div>
           {/* Desktop nav - unchanged */}
@@ -113,17 +99,6 @@ export default function Header() {
                 className={`${typography.navLink} whitespace-nowrap`}
               >
                 RELEASES
-              </Link>
-            </li>
-            <li className="header-nav-separator" aria-hidden="true">
-              |
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className={`${typography.navLink} whitespace-nowrap`}
-              >
-                ABOUT
               </Link>
             </li>
           </ul>

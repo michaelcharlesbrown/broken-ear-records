@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f2f0ed;
   --foreground: #171717;
+  --body-bg: #2a2a2a;
   --text-nav: 22px;
   --text-body-copy: 12px;
   --text-headline: 24px;
@@ -96,7 +97,7 @@ header nav .mobile-nav-link .header-nav-separator {
 }
 
 body {
-  background: var(--background);
+  background: var(--body-bg);
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: var(--text-body-copy);

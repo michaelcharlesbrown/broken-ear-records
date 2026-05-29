@@ -76,7 +76,6 @@ export default async function ArtistDetail({ params }: PageProps) {
 
   return (
     <ArtistPageShell
-      heroSrc={getArtistHeroSrc(artist)}
       artistName={artist.name}
     >
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">

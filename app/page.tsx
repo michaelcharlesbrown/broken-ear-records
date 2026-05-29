@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import HeroVideo from "@/components/HeroVideo";
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
@@ -32,9 +31,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <main>
       <h1 className="sr-only">Broken Ear Records</h1>
-      <HeroVideo />
-    </section>
+    </main>
   );
 }
