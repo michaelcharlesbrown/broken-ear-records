@@ -48,26 +48,22 @@ export default function NewsletterSignup() {
 
   if (state === "success") {
     return (
-      <div className="mx-auto w-full max-w-2xl text-center normal-case">
-        <h2 className="mb-2 font-bold text-white">
-          Thank you
-        </h2>
-        <p className="text-inherit text-white/90">
-          You are signed up for the email list.
-        </p>
+      <div className="mx-auto w-full max-w-2xl">
+        <h2 className="mb-2 font-bold">Thank you</h2>
+        <p>You are signed up for the email list.</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch">
-      <p className="mb-4 w-full max-w-none text-justify text-base uppercase leading-snug tracking-wide text-white [text-align-last:justify]">
+      <p className="mb-4 text-center">
         Sign up to hear about the latest releases from Broken Ear Records.
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className="grid w-full min-w-0 grid-cols-[7fr_3fr] border border-white"
+        className="flex w-full min-w-0 flex-col border border-white md:grid md:grid-cols-[7fr_3fr]"
       >
         <input
           type="email"
@@ -76,21 +72,19 @@ export default function NewsletterSignup() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={state === "loading"}
           autoComplete="email"
-          className="min-w-0 border-0 border-r border-white bg-black px-4 py-3 font-mono text-inherit normal-case placeholder:text-gray-400 placeholder:normal-case focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white disabled:opacity-50"
+          className="w-full min-w-0 border-0 border-b border-white bg-black px-4 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white disabled:opacity-50 md:border-b-0 md:border-r"
         />
         <button
           type="submit"
           disabled={state === "loading"}
-          className="min-w-0 whitespace-nowrap border-0 bg-black px-3 py-3 font-mono text-inherit font-normal normal-case text-white transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full min-w-0 border-0 bg-black px-4 py-3 transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
           {state === "loading" ? "Subscribing…" : "Subscribe"}
         </button>
       </form>
 
       {state === "error" && errorMessage && (
-        <p className="mt-3 text-left text-base normal-case text-white">
-          {errorMessage}
-        </p>
+        <p className="mt-3">{errorMessage}</p>
       )}
     </div>
   );

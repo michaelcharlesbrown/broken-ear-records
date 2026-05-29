@@ -50,11 +50,6 @@ export default function Releases() {
               title={release.title}
               description={artist?.name || release.artistSlug}
               variant="release"
-              metadata={
-                <p className="text-inherit text-black">
-                  {release.type} · {release.year}
-                </p>
-              }
             />
           );
         })}

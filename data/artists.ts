@@ -1,9 +1,14 @@
+export interface BioParagraph {
+  text: string;
+  italic?: boolean;
+}
+
 export interface Artist {
   name: string;
   slug: string;
   heroImage: string;
   shortBio: string;
-  fullBio: string;
+  bioParagraphs: BioParagraph[];
   images: {
     /** Full-bleed hero at top of artist detail page */
     pageHero?: string;
@@ -31,8 +36,16 @@ export const artists: Artist[] = [
     name: "Red Moon Apostles",
     slug: "red-moon-apostles",
     heroImage: "/images/rma/red-moon-apostles.jpg",
-    shortBio: "Red Moon Apostles is a dynamic musical ensemble known for their innovative sound.",
-    fullBio: "Red Moon Apostles is a dynamic musical ensemble known for their innovative sound. With a unique blend of genres and a commitment to pushing creative boundaries, they have established themselves as a prominent force in the independent music scene. Their performances captivate audiences with powerful melodies and thought-provoking lyrics.",
+    shortBio:
+      "Bow down to your algorithmic overlords and embark a harrowing journey across the dusty redsand wasteland of the future past.",
+    bioParagraphs: [
+      {
+        text: "Bow down to your algorithmic overlords and embark a harrowing journey across the dusty redsand wasteland of the future past, where time loops in ghostly incantations on magnetic tape and the whispers of a forgotten civilization drift across the barren landscape.",
+      },
+      {
+        text: "As technology becomes indistinguishable from magic, stone faces float in the shadowy void, warm in the glow of dark reflection, hovering between human longing and mechanical inevitability. Rituals of slumber endlessly reflected across tiny screens blur the line between progress and entropy, fate and free will — a world unraveling under the weight of its own artifice.",
+      },
+    ],
     images: {
       pageHero: "/images/rma/rma-hero.jpg",
       hero: "/images/rma/red-moon-apostles.jpg",
@@ -40,10 +53,9 @@ export const artists: Artist[] = [
     },
     socials: {
       website: "https://redmoonapostles.bandcamp.com",
-      spotify: "https://open.spotify.com/artist/redmoonapostles",
+      spotify: "https://open.spotify.com/artist/3IXgCsALnK7snY68rFwwe9",
       instagram: "https://instagram.com/redmoonapostles",
-      youtube: "https://www.youtube.com/redmoonapostles",
-      tiktok: "https://tiktok.com/@redmoonapostles",
+      youtube: "https://www.youtube.com/@redmoonapostles",
     },
     releases: ["red-moon-apostles-debut", "red-moon-apostles-ep"],
   },
@@ -51,17 +63,36 @@ export const artists: Artist[] = [
     name: "Mad Denizen",
     slug: "mad-denizen",
     heroImage: "/images/md/mad-denizen.jpg",
-    shortBio: "Mad Denizen brings a unique blend of genres to create an unforgettable experience.",
-    fullBio: "Mad Denizen brings a unique blend of genres to create an unforgettable experience. Their music defies categorization, seamlessly weaving together elements from various musical traditions. With each release, they continue to evolve and surprise listeners with their creative vision and technical prowess.",
+    shortBio:
+      "Men are so necessarily mad that not to be mad would appear mad, through another trick madness played.",
+    bioParagraphs: [
+      {
+        text: "Men are so necessarily mad that not to be mad would appear mad, through another trick madness played.",
+        italic: true,
+      },
+      {
+        text: "Discovering the debut LP from Mad Denizen, Starved, is kinda like putting on Springsteen's Nebraska for the first time. It's one of those records that encourages late-night listening, preferably with cigarettes smoldering in the ashtray, whiskey close at hand.",
+      },
+      {
+        text: "Starved is primarily the work of Michael Charles, an after-hours LP that, intentional or not, is haunting as all get out (but in a good way). Armed mostly with an acoustic guitar and his voice, Charles tracked the record to tape using a TASCAM 388 reel-to-reel machine. The audio quality of the vinyl is striking in its immediacy and clarity, likely due to the tape medium, attention to detail in the recording process and top-notch mastering/cutting job. Starved is a winner for both the listener and even the most discerning audiophile.",
+      },
+      {
+        text: 'The lead single "Invisible City" is like a modern update of Nirvana\'s "Polly" (complete with tasteful cello).',
+      },
+      {
+        text: "The tunes are moody and a great Smiths alternative for when you're feeling mad at the world and just want a comforting record to turn to. Couple that with the high-quality audio experience and killer album art, and this album definitely deserves a spot on your ever-expanding LP shelf. — Benjamin Ricci, Performer Magazine",
+      },
+    ],
     images: {
       pageHero: "/images/md/md-hero.jpg",
       hero: "/images/md/mad-denizen.jpg",
       portrait: "/images/md/mad-denizen.jpg",
     },
     socials: {
-      website: "https://example.com/mad-denizen",
-      spotify: "https://example.com/spotify/mad-denizen",
-      instagram: "https://example.com/instagram/mad-denizen",
+      website: "https://maddenizen.bandcamp.com",
+      spotify: "https://open.spotify.com/artist/3WJymJTqfpwT0iybktxqQh",
+      instagram: "https://instagram.com/maddenizen",
+      youtube: "https://www.youtube.com/@maddenizen",
     },
     releases: ["mad-denizen-first-album"],
   },
@@ -69,8 +100,16 @@ export const artists: Artist[] = [
     name: "Booming Dunes",
     slug: "booming-dunes",
     heroImage: "/images/bd/booming-dunes.jpg",
-    shortBio: "Booming Dunes delivers powerful performances that resonate with audiences worldwide.",
-    fullBio: "Booming Dunes delivers powerful performances that resonate with audiences worldwide. Their music combines raw energy with sophisticated arrangements, creating a sound that is both accessible and deeply meaningful. They have built a dedicated following through their authentic approach and compelling live shows.",
+    shortBio:
+      "Weird gadgets and analog synthesizers moaning and howling in reverse, echoing from handmade tape loops dangling from whirring reel-to-reel tape machines in a dark studio in the middle of the night.",
+    bioParagraphs: [
+      {
+        text: "Weird gadgets and analog synthesizers moaning and howling in reverse, echoing from handmade tape loops dangling from whirring reel-to-reel tape machines in a dark studio in the middle of the night.",
+      },
+      {
+        text: "A cinematic, hallucinatory journey through a soft, warm, saturated dreamworld of sound and emotion.",
+      },
+    ],
     images: {
       pageHero: "/images/bd/bd-hero.jpg",
       hero: "/images/bd/booming-dunes.jpg",
@@ -78,9 +117,9 @@ export const artists: Artist[] = [
     },
     socials: {
       website: "https://boomingdunes.bandcamp.com",
-      spotify: "https://open.spotify.com/artist/boomingdunes",
+      spotify: "https://open.spotify.com/artist/6Gur5AyvODlXA3mvKSHcOP",
       instagram: "https://instagram.com/boomingdunes",
-      youtube: "https://www.youtube.com/boomingdunes",
+      youtube: "https://www.youtube.com/@boomingdunes",
     },
     releases: ["booming-dunes-first-ep"],
   },

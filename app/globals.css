@@ -4,9 +4,16 @@
   --background: #f2f0ed;
   --foreground: #171717;
   --body-bg: #2a2a2a;
+  --body-bg-image: url("/images/xerox-bg.jpg");
+  --content-bg-image: url("/images/paper-bg.jpg");
+  --footer-overlay-image: url("/images/xerox-overlay.jpg");
   --text-nav: 22px;
   --text-body-copy: 12px;
   --text-headline: 24px;
+  --text-home-hero-label: clamp(1.35rem, 3.2vw, 2.5rem);
+  --text-home-hero-title: clamp(1.5rem, 4.8vw, 3rem);
+  --text-home-hero-artist: clamp(1.25rem, 3.5vw, 2.25rem);
+  --home-hero-cover: clamp(16rem, 42vw, 28rem);
 }
 
 @theme inline {
@@ -89,6 +96,30 @@ header nav .mobile-nav-link .header-nav-separator {
   letter-spacing: 0;
 }
 
+header .site-logo {
+  width: 100%;
+  height: auto;
+}
+
+.artist-social-links {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: var(--text-nav);
+  line-height: 1.25;
+}
+
+.artist-social-links .header-nav-separator {
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@media (min-width: 768px) {
+  header .site-logo {
+    width: auto;
+    height: clamp(1.55rem, 3.5vw, 2.1rem);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -97,12 +128,81 @@ header nav .mobile-nav-link .header-nav-separator {
 }
 
 body {
-  background: var(--body-bg);
+  background-color: var(--body-bg);
+  background-image: var(--body-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: var(--text-body-copy);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+}
+
+[data-site-shell] {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  background-color: var(--background);
+  background-image: var(--content-bg-image);
+  background-size: cover;
+  background-position: center;
+}
+
+[data-home-hero] {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+[data-home-hero] [data-home-hero-inner] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+[data-home-hero] [data-home-hero-label] {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: var(--text-home-hero-label);
+  line-height: 1.15;
+  margin-bottom: clamp(1.25rem, 4vw, 2rem);
+}
+
+[data-home-hero] [data-home-hero-release] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  color: inherit;
+}
+
+[data-home-hero] [data-home-hero-cover] {
+  width: var(--home-hero-cover);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+[data-home-hero] [data-home-hero-title] {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: var(--text-home-hero-title);
+  line-height: 1.05;
+  margin-top: clamp(1rem, 3vw, 1.75rem);
+  white-space: nowrap;
+}
+
+[data-home-hero] [data-home-hero-artist] {
+  font-family: var(--font-bebas-neue), sans-serif;
+  font-size: var(--text-home-hero-artist);
+  line-height: 1.15;
+  margin-top: clamp(0.35rem, 1.5vw, 0.75rem);
 }
 
 /* Main content links: black in all states (header/footer are outside main; dark UIs use text-white on links to override) */
@@ -115,6 +215,21 @@ body {
   h6 {
     font-size: var(--text-headline);
     line-height: 1.25;
+  }
+
+  input,
+  button,
+  textarea {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(156 163 175);
+    text-transform: uppercase;
   }
 
   /* Headline-styled links (e.g. Next.js Link with typography.h2, not a real h2) */
@@ -135,21 +250,19 @@ body {
   }
 }
 
-/* Mobile header typography - brutalist edge-to-edge (nav handled by JavaScript) */
+/* Mobile header — compact centered logo and nav */
 @media (max-width: 767px) {
-  .mobile-nav-link {
-    /* Font size is dynamically calculated by useBrutalistTypography hook */
-    line-height: 1 !important;
-    letter-spacing: -0.01em;
-    width: 100%;
-    padding: 0 5px !important; /* Explicit minimal padding */
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
+  header nav .header-nav-link.mobile-nav-link {
+    width: auto;
+    padding: 0 !important;
+    overflow: visible !important;
+    text-align: center;
+    line-height: 1.25 !important;
+    letter-spacing: 0;
+    font-size: clamp(24px, 6.5vw, 30px);
   }
-  
-  /* Ensure links inherit font size from parent */
-  .mobile-nav-link a {
+
+  header nav .mobile-nav-link a {
     font-size: inherit !important;
   }
   
@@ -197,6 +310,7 @@ main {
   outline: 0 !important;
   border-bottom: 0 !important;
   min-height: 0 !important;
+  background: transparent;
 }
 
 /* Ensure main doesn't create extra space when child is h-screen */
@@ -216,7 +330,36 @@ footer {
   margin-top: 0 !important;
 }
 
-/* Ensure no gap between main and footer */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(3rem, 10vw, 7.5rem);
+  min-height: clamp(14rem, 32vh, 22rem);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--footer-overlay-image);
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.site-footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure no gap between main and footer; keep symmetric vertical padding */
 main + footer {
   margin-top: 0 !important;
 }

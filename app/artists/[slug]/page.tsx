@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { artists, getArtistHeroSrc } from "@/data/artists";
 import { releases } from "@/data/releases";
-import LinkButton from "@/components/LinkButton";
+import ArtistBio from "@/components/artists/ArtistBio";
+import ArtistSocialLinks from "@/components/artists/ArtistSocialLinks";
 import ArtistPageShell from "@/components/artists/ArtistPageShell";
 import { typography } from "@/components/ui/Typography";
 
@@ -64,16 +65,6 @@ export default async function ArtistDetail({ params }: PageProps) {
 
   const artistReleases = releases.filter((r) => artist.releases.includes(r.slug));
 
-  const links = [
-    artist.socials.website && { href: artist.socials.website, label: "Website" },
-    artist.socials.spotify && { href: artist.socials.spotify, label: "Spotify" },
-    artist.socials.instagram && {
-      href: artist.socials.instagram,
-      label: "Instagram",
-    },
-    artist.socials.youtube && { href: artist.socials.youtube, label: "YouTube" },
-  ].filter(Boolean) as Array<{ href: string; label: string }>;
-
   return (
     <ArtistPageShell
       artistName={artist.name}
@@ -92,9 +83,7 @@ export default async function ArtistDetail({ params }: PageProps) {
         <div className="flex-1 flex flex-col">
           <h1 className={`${typography.h1} mb-6`}>{artist.name}</h1>
 
-          <section className="mb-8">
-            <p>{artist.fullBio}</p>
-          </section>
+          <ArtistBio paragraphs={artist.bioParagraphs} />
 
           {artistReleases.length > 0 && (
             <section className="mb-8">
@@ -114,22 +103,7 @@ export default async function ArtistDetail({ params }: PageProps) {
             </section>
           )}
 
-          {links.length > 0 && (
-            <section>
-              <div className="flex flex-wrap gap-4">
-                {links.map((link) => (
-                  <LinkButton
-                    key={link.label}
-                    href={link.href}
-                    label={link.label}
-                    external={true}
-                    artist={artist.name}
-                    className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block"
-                  />
-                ))}
-              </div>
-            </section>
-          )}
+          <ArtistSocialLinks artist={artist} />
         </div>
       </div>
     </ArtistPageShell>

@@ -62,47 +62,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col relative`}
+        className={`${ibmPlexMono.variable} ${bebasNeue.variable} font-mono antialiased flex flex-col`}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 9999,
-            pointerEvents: "none",
-            backgroundImage: "url('/images/xerox-overlay.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            mixBlendMode: "screen",
-            opacity: 0.4,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 9999,
-            pointerEvents: "none",
-            backgroundImage: "url('/images/bg-paper.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            mixBlendMode: "overlay",
-            opacity: 0.4,
-          }}
-        />
-        <div className="max-w-[1200px] mx-auto w-full flex flex-col min-h-screen bg-background">
+        <div data-site-shell className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex min-h-0 flex-1 flex-col border-0 outline-0 bg-background">
+          <main className="flex min-h-0 flex-1 flex-col border-0 outline-0">
             {children}
           </main>
-          <footer className="flex flex-col items-center justify-center bg-black text-white border-0 outline-0 border-t-0 py-40">
-            <Container className="flex w-full justify-center py-0">
+          <footer className="site-footer bg-black text-white border-0 outline-0 border-t-0">
+            <Container className="flex w-full justify-center">
               <NewsletterSignup />
             </Container>
           </footer>

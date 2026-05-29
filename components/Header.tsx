@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import { typography } from "@/components/ui/Typography";
-import { useBrutalistTypography } from "@/components/hooks/useBrutalistTypography";
 
 const LOGO_SRC = "/images/broken-ear-records-logo.png";
 const LOGO_WIDTH = 804;
@@ -20,18 +19,6 @@ export default function Header() {
     setIsHeroOverlay(false);
   }, [pathname]);
 
-  // Brutalist typography for mobile - navigation
-  const {
-    elementRef: navRef,
-  } = useBrutalistTypography<HTMLDivElement>("ARTISTS | RELEASES | ABOUT", {
-    padding: 10, // 5px padding on each side
-    baseFontSize: 22,
-    minFontSize: 10,
-    maxFontSize: 140,
-    safetyMargin: 0.99, // 99% of available width - aggressive edge-to-edge
-    debug: true, // Enable debugging
-  });
-
   return (
     <header
       className={
@@ -41,13 +28,13 @@ export default function Header() {
       }
     >
       <Container
-        className={`pt-0 pb-[10px] md:py-4 flex flex-col md:flex-row md:justify-between md:items-center w-full max-w-none mx-0 !px-[5px] md:!px-6 ${
+        className={`pt-0 pb-[10px] md:py-4 flex flex-col items-center gap-2 md:flex-row md:justify-between md:items-center md:gap-0 w-full max-w-none mx-0 !px-[5px] md:!px-6 ${
           isHeroOverlay ? "text-white" : "text-black"
         }`}
       >
         <Link
           href="/"
-          className="relative inline-flex shrink-0 items-center self-start md:self-auto"
+          className="relative flex w-[calc(100%+10px)] -mx-[5px] shrink-0 items-center md:mx-0 md:inline-flex md:w-auto md:self-auto"
         >
           <Image
             src={LOGO_SRC}
@@ -55,18 +42,15 @@ export default function Header() {
             width={LOGO_WIDTH}
             height={LOGO_HEIGHT}
             priority
-            className={`h-[clamp(1.35rem,3.2vw,1.9rem)] w-auto md:h-[clamp(1.55rem,3.5vw,2.1rem)]${
-              isHeroOverlay ? "" : " brightness-0"
-            }`}
-            sizes="(min-width: 768px) 220px, 180px"
+            className={`site-logo${isHeroOverlay ? "" : " brightness-0"}`}
+            sizes="(min-width: 768px) 220px, 100vw"
           />
         </Link>
-        <nav className="mt-0 md:mt-0 w-full md:w-auto">
-          {/* Mobile nav - single line that fills width */}
-          <div className="md:hidden w-full">
+        <nav className="mt-0 w-auto md:w-auto">
+          {/* Mobile nav — compact, centered */}
+          <div className="md:hidden">
             <div
-              ref={navRef}
-              className={`${typography.navLink} whitespace-nowrap mobile-nav-link`}
+              className={`${typography.navLink} mobile-nav-link whitespace-nowrap text-center`}
             >
               <Link href="/artists">
                 ARTISTS

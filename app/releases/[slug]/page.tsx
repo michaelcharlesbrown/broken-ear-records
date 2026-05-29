@@ -5,6 +5,7 @@ import Link from "next/link";
 import { releases } from "@/data/releases";
 import { artists } from "@/data/artists";
 import Container from "@/components/ui/Container";
+import ArtistBio from "@/components/artists/ArtistBio";
 import { typography } from "@/components/ui/Typography";
 
 interface PageProps {
@@ -62,6 +63,14 @@ export default async function ReleaseDetail({ params }: PageProps) {
   }
 
   const artist = artists.find((a) => a.slug === release.artistSlug);
+  const spotifyLink =
+    release.streamLinks.find((link) => link.label === "Spotify") ??
+    release.streamLinks[0];
+  const bandcampLink =
+    release.buyLinks.find((link) => link.label === "Bandcamp") ??
+    release.buyLinks[0];
+
+  const releaseLinkClassName = `${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block`;
 
   return (
     <Container className="py-24 md:py-32 min-h-[80vh] flex items-center" maxWidth="w-full max-w-[1400px]">
@@ -81,11 +90,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
         {/* Right: album title + details */}
         <div className="flex-1">
           <h1 className={`${typography.h1} mb-4`}>{release.title}</h1>
-          <p className="text-inherit text-black mb-4">
-            {release.type} · {release.year}
-          </p>
           <p className="mb-6">
-            By{" "}
             <Link
               href={`/artists/${release.artistSlug}`}
               className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block`}
@@ -94,47 +99,30 @@ export default async function ReleaseDetail({ params }: PageProps) {
             </Link>
           </p>
 
-          <section className="mb-6">
-            <p>{release.blurb}</p>
-          </section>
+          <ArtistBio paragraphs={release.blurbParagraphs} />
 
-          {release.streamLinks.length > 0 && (
-            <section className="mb-6">
-              <h2 className={`${typography.h2} mb-4`}>Stream album</h2>
-              <ul className="flex flex-col gap-2">
-                {release.streamLinks.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {release.buyLinks.length > 0 && (
-            <section>
-              <h2 className={`${typography.h2} mb-4`}>Buy album</h2>
-              <ul className="flex flex-col gap-2">
-                {release.buyLinks.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {(spotifyLink || bandcampLink) && (
+            <section className="mt-6 flex flex-col gap-2">
+              {spotifyLink && (
+                <a
+                  href={spotifyLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={releaseLinkClassName}
+                >
+                  Stream the Album
+                </a>
+              )}
+              {bandcampLink && (
+                <a
+                  href={bandcampLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={releaseLinkClassName}
+                >
+                  Buy the Album
+                </a>
+              )}
             </section>
           )}
         </div>

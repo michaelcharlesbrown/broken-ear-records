@@ -63,22 +63,39 @@ export default async function ArtistLinks({ params }: PageProps) {
 
   const artistReleases = releases.filter((r) => r.artistSlug === slug);
   const firstRelease = artistReleases[0];
+  const bandcampBuyLink = firstRelease?.buyLinks.find(
+    (link) => link.label === "Bandcamp"
+  );
 
   const coverImage = firstRelease?.coverImage || artist.heroImage;
   const releaseTitle = firstRelease?.title || "Latest Release";
 
   const links = [
-    { href: artist.socials.spotify || "#", label: "Spotify" },
-    { href: artist.socials.website || "#", label: "Bandcamp" },
-    { href: artist.socials.appleMusic || "#", label: "Apple Music" },
-    { href: artist.socials.youtube || "#", label: "YouTube Music" },
-  ];
+    artist.socials.spotify && { href: artist.socials.spotify, label: "Spotify" },
+    bandcampBuyLink && { href: bandcampBuyLink.href, label: "Bandcamp" },
+    artist.socials.appleMusic && {
+      href: artist.socials.appleMusic,
+      label: "Apple Music",
+    },
+  ].filter(Boolean) as Array<{ href: string; label: string }>;
 
   const socialLinks = [
-    { href: artist.socials.instagram || "#", platform: "instagram" as const },
-    { href: artist.socials.youtube || "#", platform: "youtube" as const },
-    { href: artist.socials.tiktok || "#", platform: "tiktok" as const },
-  ];
+    artist.socials.instagram && {
+      href: artist.socials.instagram,
+      platform: "instagram" as const,
+    },
+    artist.socials.youtube && {
+      href: artist.socials.youtube,
+      platform: "youtube" as const,
+    },
+    artist.socials.tiktok && {
+      href: artist.socials.tiktok,
+      platform: "tiktok" as const,
+    },
+  ].filter(Boolean) as Array<{
+    href: string;
+    platform: "instagram" | "youtube" | "tiktok";
+  }>;
 
   return (
     <ArtistPageShell
