@@ -33,6 +33,8 @@ export default function Home() {
   return (
     <main>
       <h1 className="sr-only">Broken Ear Records</h1>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/images/md-test.jpg" alt="" className="w-full" />
     </main>
   );
 }

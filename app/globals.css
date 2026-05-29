@@ -219,7 +219,6 @@ footer {
 /* Ensure no gap between main and footer */
 main + footer {
   margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
 /* Ensure hero section extends to edge and footer starts immediately */
