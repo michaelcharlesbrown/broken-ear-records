@@ -6,6 +6,9 @@
   --body-bg: #d0d0d0;
   --body-bg-image: url("/images/paper-bg-dark.jpg");
   --content-bg-image: url("/images/paper-bg.jpg");
+  --paper-hover-bg: #171717;
+  --paper-hover-fg: #f2f0ed;
+  --paper-hover-image: url("/images/paper-bg-dark.jpg");
   --footer-overlay-image: url("/images/xerox-overlay.jpg");
   --text-nav: 22px;
   --text-body-copy: 12px;
@@ -199,6 +202,97 @@ body {
   padding: 0.2rem 0.65rem;
   display: inline-block;
   filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.15));
+  transition: background-color 0.15s ease, background-image 0.15s ease;
+}
+
+/*
+ * Paper hover — light paper + dark type inverts to dark paper + light type.
+ * Uses paper-bg-dark.jpg on hover; no extra assets required.
+ */
+[data-paper-nav]:has(a:hover),
+[data-paper-nav]:has(a:focus-visible),
+[data-paper-nav]:has(button:hover:not(:disabled)),
+[data-paper-nav]:has(button:focus-visible:not(:disabled)),
+[data-paper-nav]:has(input:hover:not(:disabled)),
+[data-paper-nav]:has(input:focus:not(:disabled)) {
+  background-color: var(--paper-hover-bg);
+  background-image: var(--paper-hover-image);
+}
+
+[data-paper-nav]:has(a:hover) a,
+[data-paper-nav]:has(a:focus-visible) a,
+[data-paper-nav]:has(a:hover) a:visited,
+[data-paper-nav]:has(a:focus-visible) a:visited,
+[data-paper-nav]:has(button:hover:not(:disabled)) button,
+[data-paper-nav]:has(button:focus-visible:not(:disabled)) button,
+[data-paper-nav]:has(input:hover:not(:disabled)) input,
+[data-paper-nav]:has(input:focus:not(:disabled)) input {
+  color: var(--paper-hover-fg);
+}
+
+[data-paper-nav]:has(input:hover:not(:disabled)) input::placeholder,
+[data-paper-nav]:has(input:focus:not(:disabled)) input::placeholder {
+  color: rgb(180 180 180);
+}
+
+a[data-paper-block] {
+  transition: background-color 0.15s ease, background-image 0.15s ease, color 0.15s ease;
+}
+
+a[data-paper-block]:hover,
+a[data-paper-block]:focus-visible {
+  background-color: var(--paper-hover-bg);
+  background-image: var(--paper-hover-image);
+  color: var(--paper-hover-fg);
+}
+
+a[data-paper-block]:hover *,
+a[data-paper-block]:focus-visible * {
+  color: inherit;
+}
+
+[data-paper-block]:has(> a:hover),
+[data-paper-block]:has(> a:focus-visible),
+[data-paper-block]:has(a:hover),
+[data-paper-block]:has(a:focus-visible) {
+  background-color: var(--paper-hover-bg);
+  background-image: var(--paper-hover-image);
+  transition: background-color 0.15s ease, background-image 0.15s ease;
+}
+
+[data-paper-block]:has(a:hover) a,
+[data-paper-block]:has(a:focus-visible) a,
+[data-paper-block]:has(a:hover) a:visited,
+[data-paper-block]:has(a:focus-visible) a:visited,
+[data-paper-block]:has(a:hover) h1,
+[data-paper-block]:has(a:hover) h2,
+[data-paper-block]:has(a:hover) h3,
+[data-paper-block]:has(a:hover) p,
+[data-paper-block]:has(a:focus-visible) h1,
+[data-paper-block]:has(a:focus-visible) h2,
+[data-paper-block]:has(a:focus-visible) h3,
+[data-paper-block]:has(a:focus-visible) p {
+  color: var(--paper-hover-fg);
+}
+
+.artist-social-link,
+.release-link,
+header nav .header-nav-link,
+.newsletter-field {
+  transition: color 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-paper-nav],
+  a[data-paper-block],
+  [data-paper-block]:has(a:hover),
+  [data-paper-block]:has(a:focus-visible),
+  .artist-social-link,
+  .release-link,
+  header nav .header-nav-link,
+  .newsletter-field {
+    transition: none;
+  }
 }
 
 /* Hand-cut scissor edge variants — clip-path + subtle rotation */

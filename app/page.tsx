@@ -85,7 +85,7 @@ export default function Home() {
                 href={`/releases/${latestRelease.slug}`}
                 data-paper-block
                 data-cut={cutVariant("home-title")}
-                className="block text-black hover:text-black"
+                className="block text-black"
               >
                 <p data-home-hero-title>{latestRelease.title}</p>
               </Link>
@@ -94,7 +94,7 @@ export default function Home() {
                   href={`/artists/${artist.slug}`}
                   data-paper-block
                   data-cut={cutVariant("home-artist")}
-                  className="block text-black hover:text-black"
+                  className="block text-black"
                 >
                   <p data-home-hero-artist>{artist.name}</p>
                 </Link>

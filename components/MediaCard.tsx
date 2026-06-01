@@ -25,7 +25,7 @@ export default function MediaCard({
   cutSeed = href,
 }: MediaCardProps) {
   const cardClasses =
-    "block border-0 hover:shadow-none text-black hover:text-black visited:text-black active:text-black";
+    "block border-0 hover:shadow-none text-black visited:text-black";
 
   return (
     <Link href={href} className={cardClasses} data-paper-block data-cut={cutVariant(cutSeed)}>
@@ -40,7 +40,7 @@ export default function MediaCard({
       </div>
       <h2 className={`${typography.h2} mb-3`}>{title}</h2>
       {description && (
-        <p className={`text-inherit text-black ${metadata ? "mb-2" : ""}`}>
+        <p className={`text-inherit ${metadata ? "mb-2" : ""}`}>
           {description}
         </p>
       )}
