@@ -6,7 +6,9 @@ import { releases } from "@/data/releases";
 import { artists } from "@/data/artists";
 import Container from "@/components/ui/Container";
 import ArtistBio from "@/components/artists/ArtistBio";
-import { typography } from "@/components/ui/Typography";
+import ArtistSocialLinks from "@/components/artists/ArtistSocialLinks";
+import ReleaseLinks from "@/components/releases/ReleaseLinks";
+import { cutVariant } from "@/lib/cutVariant";
 
 interface PageProps {
   params: Promise<{
@@ -63,70 +65,56 @@ export default async function ReleaseDetail({ params }: PageProps) {
   }
 
   const artist = artists.find((a) => a.slug === release.artistSlug);
-  const spotifyLink =
-    release.streamLinks.find((link) => link.label === "Spotify") ??
-    release.streamLinks[0];
-  const bandcampLink =
-    release.buyLinks.find((link) => link.label === "Bandcamp") ??
-    release.buyLinks[0];
-
-  const releaseLinkClassName = `${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block`;
-
   return (
-    <Container className="py-24 md:py-32 min-h-[80vh] flex items-center" maxWidth="w-full max-w-[1400px]">
-      <div className="w-full flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-        {/* Left: Larger Image */}
-        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden">
-          <Image
-            src={release.coverImage}
-            alt={release.title}
-            width={800}
-            height={800}
-            className="w-full h-auto object-cover rounded-none"
-            priority
-          />
+    <div data-artist-page>
+      <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
+
+          {/* Left column — cover + stream/buy */}
+          <div className="flex flex-col gap-4 md:gap-6">
+            <div data-paper-block data-cut={cutVariant(release.slug)} className="overflow-hidden">
+              <Image
+                src={release.coverImage}
+                alt={release.title}
+                width={800}
+                height={800}
+                className="w-full h-auto object-cover rounded-none"
+                priority
+              />
+            </div>
+
+            <ReleaseLinks
+              buyLinks={release.buyLinks}
+              streamLinks={release.streamLinks}
+              slug={release.slug}
+            />
+          </div>
+
+          {/* Right column — title, artist, bio, social links */}
+          <div className="flex flex-col gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 md:gap-4">
+              <div data-paper-block data-cut={cutVariant(release.slug + "-heading")}>
+                <h1>{release.title}</h1>
+              </div>
+              <div data-paper-block data-cut={cutVariant(release.slug + "-artist-label")} className="sm:w-fit">
+                {artist ? (
+                  <Link href={`/artists/${artist.slug}`}>
+                    <h2>{artist.name}</h2>
+                  </Link>
+                ) : (
+                  <h2>{release.artistSlug}</h2>
+                )}
+              </div>
+            </div>
+
+            <div data-paper-block data-cut={cutVariant(release.slug + "-bio")} className="[&_.artist-bio]:mb-0">
+              <ArtistBio paragraphs={release.blurbParagraphs} />
+            </div>
+
+            {artist && <ArtistSocialLinks artist={artist} />}
+          </div>
         </div>
-
-        {/* Right: album title + details */}
-        <div className="flex-1">
-          <h1 className={`${typography.h1} mb-4`}>{release.title}</h1>
-          <p className="mb-6">
-            <Link
-              href={`/artists/${release.artistSlug}`}
-              className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black inline-block`}
-            >
-              {artist?.name || release.artistSlug}
-            </Link>
-          </p>
-
-          <ArtistBio paragraphs={release.blurbParagraphs} />
-
-          {(spotifyLink || bandcampLink) && (
-            <section className="mt-6 flex flex-col gap-2">
-              {spotifyLink && (
-                <a
-                  href={spotifyLink.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={releaseLinkClassName}
-                >
-                  Stream the Album
-                </a>
-              )}
-              {bandcampLink && (
-                <a
-                  href={bandcampLink.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={releaseLinkClassName}
-                >
-                  Buy the Album
-                </a>
-              )}
-            </section>
-          )}
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

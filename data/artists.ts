@@ -14,6 +14,8 @@ export interface Artist {
     pageHero?: string;
     hero?: string;
     portrait?: string;
+    /** Stamp/cutout headline image replacing the h1 text */
+    title?: string;
   };
   socials: {
     website?: string;
@@ -50,6 +52,7 @@ export const artists: Artist[] = [
       pageHero: "/images/rma/rma-hero.jpg",
       hero: "/images/rma/red-moon-apostles.jpg",
       portrait: "/images/rma/red-moon-apostles.jpg",
+      title: "/images/rma.jpg",
     },
     socials: {
       website: "https://redmoonapostles.bandcamp.com",
@@ -86,7 +89,8 @@ export const artists: Artist[] = [
     images: {
       pageHero: "/images/md/md-hero.jpg",
       hero: "/images/md/mad-denizen.jpg",
-      portrait: "/images/md/mad-denizen.jpg",
+      portrait: "/images/md/hero-md.jpg",
+      title: "/images/md.jpg",
     },
     socials: {
       website: "https://maddenizen.bandcamp.com",
@@ -114,6 +118,7 @@ export const artists: Artist[] = [
       pageHero: "/images/bd/bd-hero.jpg",
       hero: "/images/bd/booming-dunes.jpg",
       portrait: "/images/bd/booming-dunes.jpg",
+      title: "/images/bd.jpg",
     },
     socials: {
       website: "https://boomingdunes.bandcamp.com",

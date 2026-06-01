@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { typography } from "@/components/ui/Typography";
+import { cutVariant } from "@/lib/cutVariant";
 
 export interface MediaCardProps {
   href: string;
@@ -10,6 +11,7 @@ export interface MediaCardProps {
   description?: string;
   variant?: "artist" | "release";
   metadata?: React.ReactNode;
+  cutSeed?: string | number;
 }
 
 export default function MediaCard({
@@ -20,13 +22,13 @@ export default function MediaCard({
   description,
   variant = "artist",
   metadata,
+  cutSeed = href,
 }: MediaCardProps) {
-  // Consistent card styling across all variants
   const cardClasses =
-    "block border-0 !p-0 hover:shadow-none text-black hover:text-black visited:text-black active:text-black";
+    "block border-0 hover:shadow-none text-black hover:text-black visited:text-black active:text-black";
 
   return (
-    <Link href={href} className={cardClasses}>
+    <Link href={href} className={cardClasses} data-paper-block data-cut={cutVariant(cutSeed)}>
       <div className="aspect-square bg-gray-200 mb-5 md:mb-6 overflow-hidden">
         <Image
           src={imageSrc}

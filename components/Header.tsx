@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
-import { typography } from "@/components/ui/Typography";
+import { cutVariant } from "@/lib/cutVariant";
 
-const LOGO_SRC = "/images/broken-ear-records-logo.png";
-const LOGO_WIDTH = 804;
-const LOGO_HEIGHT = 104;
+const LOGO_SRC = "/images/title.jpg";
+const LOGO_WIDTH = 2500;
+const LOGO_HEIGHT = 284;
 
 export default function Header() {
   const pathname = usePathname();
@@ -34,7 +34,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          className="relative flex w-[calc(100%+10px)] -mx-[5px] shrink-0 items-center md:mx-0 md:inline-flex md:w-auto md:self-auto"
+          className="relative flex w-[calc(100%+10px)] -mx-[5px] items-center md:mx-0 md:inline-flex md:w-auto md:self-auto"
         >
           <Image
             src={LOGO_SRC}
@@ -42,48 +42,27 @@ export default function Header() {
             width={LOGO_WIDTH}
             height={LOGO_HEIGHT}
             priority
-            className={`site-logo${isHeroOverlay ? "" : " brightness-0"}`}
-            sizes="(min-width: 768px) 220px, 100vw"
+            className="site-logo"
+            sizes="(min-width: 768px) 700px, 100vw"
           />
         </Link>
-        <nav className="mt-0 w-auto md:w-auto">
-          {/* Mobile nav — compact, centered */}
-          <div className="md:hidden">
-            <div
-              className={`${typography.navLink} mobile-nav-link whitespace-nowrap text-center`}
-            >
-              <Link href="/artists">
-                ARTISTS
-              </Link>
-              <span className="header-nav-separator" aria-hidden="true">
-                {" "}
-                |{" "}
-              </span>
-              <Link href="/releases">
-                RELEASES
-              </Link>
-            </div>
+        <nav data-nav-headlines className="mt-0 w-auto md:w-auto">
+          {/* Mobile nav */}
+          <div className="md:hidden flex items-center gap-3">
+            <span data-paper-nav data-cut={cutVariant("nav-artists")}>
+              <Link href="/artists" className="header-nav-link">Artists</Link>
+            </span>
+            <span data-paper-nav data-cut={cutVariant("nav-releases")}>
+              <Link href="/releases" className="header-nav-link">Releases</Link>
+            </span>
           </div>
-          {/* Desktop nav - unchanged */}
-          <ul className="hidden list-none md:flex md:items-center md:gap-2">
-            <li>
-              <Link
-                href="/artists"
-                className={`${typography.navLink} whitespace-nowrap`}
-              >
-                ARTISTS
-              </Link>
+          {/* Desktop nav */}
+          <ul className="hidden list-none md:flex md:items-center md:gap-3">
+            <li data-paper-nav data-cut={cutVariant("nav-artists")}>
+              <Link href="/artists" className="header-nav-link">Artists</Link>
             </li>
-            <li className="header-nav-separator" aria-hidden="true">
-              |
-            </li>
-            <li>
-              <Link
-                href="/releases"
-                className={`${typography.navLink} whitespace-nowrap`}
-              >
-                RELEASES
-              </Link>
+            <li data-paper-nav data-cut={cutVariant("nav-releases")}>
+              <Link href="/releases" className="header-nav-link">Releases</Link>
             </li>
           </ul>
         </nav>

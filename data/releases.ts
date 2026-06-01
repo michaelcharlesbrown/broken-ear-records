@@ -2,6 +2,7 @@ import type { BioParagraph } from "@/data/artists";
 
 export interface Release {
   title: string;
+  titleImage?: string;
   slug: string;
   artistSlug: "red-moon-apostles" | "mad-denizen" | "booming-dunes";
   year: number;
@@ -16,6 +17,7 @@ export interface Release {
 export const releases: Release[] = [
   {
     title: "Beneath the Burning Sands",
+    titleImage: "/images/beneath.jpg",
     slug: "red-moon-apostles-debut",
     artistSlug: "red-moon-apostles",
     year: 2023,
@@ -46,6 +48,7 @@ export const releases: Release[] = [
   },
   {
     title: "Starved",
+    titleImage: "/images/starved.jpg",
     slug: "mad-denizen-first-album",
     artistSlug: "mad-denizen",
     year: 2024,
@@ -86,6 +89,7 @@ export const releases: Release[] = [
   },
   {
     title: "Dark Patterns",
+    titleImage: "/images/dark-patterns.jpg",
     slug: "booming-dunes-first-ep",
     artistSlug: "booming-dunes",
     year: 2023,

@@ -1,6 +1,7 @@
 "use client";
 
 import { trackOutboundClick } from "@/lib/analytics";
+import { cutVariant } from "@/lib/cutVariant";
 import type { Artist } from "@/data/artists";
 
 const SOCIAL_LINKS: Array<{
@@ -28,33 +29,30 @@ export default function ArtistSocialLinks({ artist }: ArtistSocialLinksProps) {
   }
 
   return (
-    <section>
-      <div className="artist-social-links flex flex-wrap items-center">
-        {links.map((link, index) => (
-          <span key={link.label} className="inline-flex items-center">
-            {index > 0 && (
-              <span className="header-nav-separator px-2" aria-hidden="true">
-                |
-              </span>
-            )}
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
-              onClick={() =>
-                trackOutboundClick({
-                  artist: artist.name,
-                  platform: link.label,
-                  destination: link.href,
-                })
-              }
-            >
-              {link.label}
-            </a>
-          </span>
-        ))}
-      </div>
-    </section>
+    <div className="flex flex-wrap gap-3">
+      {links.map((link) => (
+        <span
+          key={link.label}
+          data-paper-nav
+          data-cut={cutVariant(artist.slug + "-social-" + link.label)}
+        >
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="artist-social-link"
+            onClick={() =>
+              trackOutboundClick({
+                artist: artist.name,
+                platform: link.label,
+                destination: link.href,
+              })
+            }
+          >
+            {link.label}
+          </a>
+        </span>
+      ))}
+    </div>
   );
 }

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { artists } from "@/data/artists";
 import { releases } from "@/data/releases";
+import Container from "@/components/ui/Container";
+import { cutVariant } from "@/lib/cutVariant";
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
@@ -49,31 +51,59 @@ export default function Home() {
   return (
     <>
       <h1 className="sr-only">Broken Ear Records</h1>
-      <section data-home-hero>
-        <div data-home-hero-inner>
-          <p data-home-hero-label>Latest Releases</p>
-          <Link
-            href={`/releases/${latestRelease.slug}`}
-            data-home-hero-release
-            className="text-black hover:text-black focus-visible:text-black active:text-black visited:text-black"
-          >
-            <div data-home-hero-cover>
+      <div data-artist-page>
+        <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
+          <div className="flex flex-col gap-4 md:gap-6">
+
+            {/* Latest Releases — content-width headline */}
+            <div>
+              <div data-paper-block data-cut={cutVariant("home-label")} className="inline-block">
+                <p data-home-hero-label>Latest Releases</p>
+              </div>
+            </div>
+
+            {/* Hero image — full width */}
+            <Link
+              href={`/releases/${latestRelease.slug}`}
+              data-paper-block
+              data-cut={cutVariant("home-image")}
+              className="block overflow-hidden"
+            >
               <Image
-                src={latestRelease.coverImage}
+                src="/images/rma/hero-rma.jpg"
                 alt={latestRelease.title}
-                width={800}
+                width={1400}
                 height={800}
-                className="h-full w-full object-cover rounded-none"
+                className="w-full h-auto object-cover rounded-none"
                 priority
               />
+            </Link>
+
+            {/* Album title + band name — side by side below image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <Link
+                href={`/releases/${latestRelease.slug}`}
+                data-paper-block
+                data-cut={cutVariant("home-title")}
+                className="block text-black hover:text-black"
+              >
+                <p data-home-hero-title>{latestRelease.title}</p>
+              </Link>
+              {artist && (
+                <Link
+                  href={`/artists/${artist.slug}`}
+                  data-paper-block
+                  data-cut={cutVariant("home-artist")}
+                  className="block text-black hover:text-black"
+                >
+                  <p data-home-hero-artist>{artist.name}</p>
+                </Link>
+              )}
             </div>
-            <p data-home-hero-title>{latestRelease.title}</p>
-            <p data-home-hero-artist>
-              {artist?.name ?? latestRelease.artistSlug}
-            </p>
-          </Link>
-        </div>
-      </section>
+
+          </div>
+        </Container>
+      </div>
     </>
   );
 }

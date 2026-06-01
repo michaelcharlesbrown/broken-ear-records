@@ -7,7 +7,9 @@ import { releases } from "@/data/releases";
 import ArtistBio from "@/components/artists/ArtistBio";
 import ArtistSocialLinks from "@/components/artists/ArtistSocialLinks";
 import ArtistPageShell from "@/components/artists/ArtistPageShell";
+import ReleaseLinks from "@/components/releases/ReleaseLinks";
 import { typography } from "@/components/ui/Typography";
+import { cutVariant } from "@/lib/cutVariant";
 
 interface PageProps {
   params: Promise<{
@@ -69,42 +71,75 @@ export default async function ArtistDetail({ params }: PageProps) {
     <ArtistPageShell
       artistName={artist.name}
     >
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-        <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 overflow-hidden">
-          <Image
-            src={artist.images.portrait || artist.heroImage}
-            alt={artist.name}
-            width={800}
-            height={800}
-            className="w-full h-auto object-cover rounded-none"
-          />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
+
+        {/* Headline row — paper blocks sitting on dark background */}
+        <div data-paper-block data-cut={cutVariant(artist.slug + "-heading")} className="md:col-span-2">
+          <h1>{artist.name}</h1>
         </div>
+        {artistReleases.length > 0 && (
+          <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")} className="md:col-span-1">
+            <h2>Releases</h2>
+          </div>
+        )}
 
-        <div className="flex-1 flex flex-col">
-          <h1 className={`${typography.h1} mb-6`}>{artist.name}</h1>
+        {/* Left main column — spans 2 of 3 */}
+        <div className="md:col-span-2 flex flex-col gap-4 md:gap-6">
+          <div data-paper-block data-cut={cutVariant(artist.slug)} className="flex flex-col gap-6">
+            <div className="overflow-hidden">
+              <Image
+                src={artist.images.portrait || artist.heroImage}
+                alt={artist.name}
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover rounded-none"
+              />
+            </div>
 
-          <ArtistBio paragraphs={artist.bioParagraphs} />
-
-          {artistReleases.length > 0 && (
-            <section className="mb-8">
-              <h2 className={`${typography.sectionLabel} mb-4`}>Releases</h2>
-              <ul>
-                {artistReleases.map((release) => (
-                  <li key={release.slug}>
-                    <Link
-                      href={`/releases/${release.slug}`}
-                      className={`${typography.h2} text-black hover:text-black focus-visible:text-black active:text-black visited:text-black`}
-                    >
-                      {release.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+            <ArtistBio paragraphs={artist.bioParagraphs} />
+          </div>
 
           <ArtistSocialLinks artist={artist} />
         </div>
+
+        {/* Right sidebar — 1 of 3 */}
+        {artistReleases.length > 0 && (
+          <div className="md:col-span-1 flex flex-col gap-4 md:gap-6">
+            {artistReleases.map((release) => (
+              <div key={release.slug} className="flex flex-col gap-3 md:gap-4">
+                <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-title-" + release.slug)}>
+                  <Link href={`/releases/${release.slug}`} className="block">
+                    <h3 className="text-black">{release.title}</h3>
+                  </Link>
+                </div>
+
+                <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-" + release.slug)} className="flex flex-col gap-3">
+                  <Link href={`/releases/${release.slug}`}>
+                    <Image
+                      src={release.coverImage}
+                      alt={release.title}
+                      width={600}
+                      height={600}
+                      className="w-full h-auto object-cover rounded-none"
+                    />
+                  </Link>
+
+                  {release.blurbParagraphs[0] && (
+                    <p className={typography.body}>
+                      {release.blurbParagraphs[0].text}
+                    </p>
+                  )}
+                </div>
+
+                <ReleaseLinks
+                  buyLinks={release.buyLinks}
+                  streamLinks={release.streamLinks}
+                  slug={release.slug}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </ArtistPageShell>
   );
