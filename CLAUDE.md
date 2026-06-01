@@ -1,53 +1,103 @@
 # Broken Ear Records — Claude Code Project Brief
 
-**Site:** Broken Ear Records
-**Owner:** Michael Charles Brown
-**Stack:** Next.js App Router
-
-> Global rules in ~/.claude/CLAUDE.md apply to this project.
-> This file adds project-specific context only.
+Next.js App Router · Tailwind 4 · No database, no auth, no e-commerce
 
 ---
 
 ## Workflow
 
-Always work directly on the `main` branch. Edit files in the project root
-(`/Users/mcb/Documents/Projects/broken-ear-records/`). Do not use git
-worktrees — the dev server watches the project root, not worktrees, so edits
-made in a worktree will not appear on localhost.
-
-If Claude Code opens a worktree session, make all edits to the corresponding
-files in the project root instead.
+- Work directly on `main`. Do not use git worktrees — the dev server watches
+  the project root only.
+- Dev server: port 3001, already running. Do not restart or reconfigure it.
+- Do not add dependencies without asking.
+- Do not rename, move, or delete files without explicit instruction.
 
 ---
 
-## Dev Server
+## Do Not Touch
 
-Port: 3001 — already running. Do not touch it.
+These are protected. Do not modify without explicit instruction:
 
----
-
-## Critical Infrastructure — Do Not Touch
-
-- Meta Pixel — do not modify any pixel or event tracking code
-- Google Analytics — do not alter any GA tags or IDs
-- Ad funnel pages — do not restructure, rename, or delete campaign pages
-- Link pages — do not modify URL slugs or page structure
-- Any Script tags in layout or head — treat as untouchable
+- Meta Pixel / fbq code (layout.tsx + lib/analytics.ts + api/meta/event)
+- Google Analytics / gtag (layout.tsx + @next/third-parties)
+- Newsletter API route (api/newsletter/subscribe)
+- Script tags in layout or head
+- Link pages (/artists/[slug]/links) — do not change URL slugs or structure
 
 If a task requires touching any of the above, stop and ask first.
 
 ---
 
-## Stack
+## Typography
 
-- Next.js App Router
-- No database, no auth, no e-commerce
+Single source of truth: `:root` custom properties in globals.css.
+
+| Token              | Use                        |
+|--------------------|----------------------------|
+| `--text-hero`      | h1                         |
+| `--text-heading`   | h2                         |
+| `--text-subheading`| h3                         |
+| `--text-nav`       | nav links, labels, CTAs    |
+| `--text-body`      | body text (0.75rem / 12px) |
+| `--text-small`     | small text (same for now)  |
+
+Rules:
+- All heading styles live in `@layer base` using these tokens.
+- Do not use Tailwind text-size classes (`text-sm`, `text-base`, etc.) for
+  font sizing — they are not overridden and will produce wrong results.
+- Any new font-size must reference a `--text-*` token.
+- Two fonts: IBM Plex Mono (body), Bebas Neue (headings/nav). No others.
+- The site is light/paper-only. No dark mode.
 
 ---
 
-## What Not To Do
+## Heading Hierarchy
 
-- Do not touch tracking scripts, pixel code, or analytics without explicit instruction
-- Do not rename, move, or delete files without explicit instruction
-- Do not add dependencies without asking
+- One H1 per page. Listing pages use sr-only H1s; detail pages use visible H1s.
+- Levels never skip (H1 → H2 → H3).
+- Footer newsletter H2 appears on every page via layout — do not duplicate.
+- MediaCard renders H2 for item titles on listing grids — intentional.
+- Do not change sr-only H1s to visible without explicit instruction.
+
+---
+
+## Visual System
+
+- Paper blocks: `data-paper-block` / `data-paper-nav` with `data-cut` variants.
+- Scissor-cut edges: `cutVariant()` generates deterministic clip-path (1–8).
+- Hover: paper blocks invert (light→dark) on hover via CSS `:has()`.
+- Site shell: `data-site-shell` caps content at 1200px.
+- Container component defaults to 1800px max-width but the shell is the
+  actual constraint — keep them aligned or use Container's `maxWidth` prop.
+
+---
+
+## Project Structure
+
+```
+app/
+  layout.tsx          — root layout, fonts, analytics, footer
+  page.tsx            — home (latest release hero)
+  about/page.tsx      — full-bleed dark about page
+  artists/page.tsx    — artist grid (MediaCard)
+  artists/[slug]/     — artist detail + /links subpage
+  releases/page.tsx   — release grid (MediaCard)
+  releases/[slug]/    — release detail
+  api/meta/event/     — Meta CAPI proxy (protected)
+  api/newsletter/     — MailerLite proxy (protected)
+components/
+  Header.tsx          — logo + nav
+  NewsletterSignup.tsx— footer email form
+  MediaCard.tsx       — artist/release grid cards
+  ArtistLinksHub.tsx  — link-in-bio page
+  LinkButton.tsx      — external link with analytics
+  artists/            — ArtistBio, ArtistPageShell, ArtistSocialLinks
+  releases/           — ReleaseLinks
+  ui/                 — Container, Typography (class constants)
+data/
+  artists.ts          — artist content + socials
+  releases.ts         — release content + buy/stream links
+lib/
+  analytics.ts        — outbound click tracking (GA4 + fbq + CAPI)
+  cutVariant.ts       — deterministic clip-path seed
+```
