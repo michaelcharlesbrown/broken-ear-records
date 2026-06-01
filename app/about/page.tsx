@@ -55,7 +55,7 @@ export default function About() {
 
       <Container className="relative z-10 pt-12 pb-20 md:pb-28 md:px-8 text-white mix-blend-difference">
         <h1 className="sr-only">About</h1>
-        <div className="max-w-3xl space-y-6 text-base font-mono uppercase leading-relaxed tracking-wide text-white">
+        <div className="max-w-3xl space-y-6 font-mono uppercase leading-relaxed tracking-wide text-white">
           <p>
             Broken Ear Records is an independent label based in Los Angeles,
             committed to releasing original, uncompromising work from underground
@@ -86,7 +86,7 @@ export default function About() {
           <p>Thank you for listening. See you at the next show.</p>
 
           <p className="border-t border-white/25 pt-8 mt-8">
-            <span className="mb-2 block text-base tracking-wide opacity-90">
+            <span className="mb-2 block tracking-wide opacity-90">
               Contact
             </span>
             <a

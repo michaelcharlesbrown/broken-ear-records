@@ -10,16 +10,12 @@
   --paper-hover-fg: #f2f0ed;
   --paper-hover-image: url("/images/paper-bg-dark.jpg");
   --footer-overlay-image: url("/images/xerox-overlay.jpg");
-  --text-nav: 22px;
-  --text-body-copy: 12px;
-  --text-headline: 24px;
-  --text-h1: clamp(2.5rem, 6vw, 5rem);
-  --text-h2: clamp(1.5rem, 3.5vw, 2.75rem);
-  --text-h3: clamp(1.25rem, 2.5vw, 2rem);
-  --text-home-hero-label: clamp(1.35rem, 3.2vw, 2.5rem);
-  --text-home-hero-title: clamp(1.5rem, 4.8vw, 3rem);
-  --text-home-hero-artist: clamp(1.25rem, 3.5vw, 2.25rem);
-  --home-hero-cover: clamp(16rem, 42vw, 28rem);
+  --text-hero: clamp(2.5rem, 6vw, 5rem);
+  --text-heading: clamp(1.5rem, 3.5vw, 2.75rem);
+  --text-subheading: clamp(1.25rem, 2.5vw, 2rem);
+  --text-nav: clamp(1.25rem, 3vw, 1.5rem);
+  --text-body: 0.75rem;
+  --text-small: 0.75rem;
 }
 
 @theme inline {
@@ -27,38 +23,6 @@
   --color-foreground: var(--foreground);
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
   --font-family-bebas-neue: var(--font-bebas-neue), sans-serif;
-
-  /* Uniform 12px type scale site-wide */
-  --text-xs: 12px;
-  --text-xs--line-height: 1.25;
-  --text-sm: 12px;
-  --text-sm--line-height: 1.25;
-  --text-base: 12px;
-  --text-base--line-height: 1.25;
-  --text-lg: 12px;
-  --text-lg--line-height: 1.25;
-  --text-xl: 12px;
-  --text-xl--line-height: 1.25;
-  --text-2xl: 12px;
-  --text-2xl--line-height: 1.25;
-  --text-3xl: 12px;
-  --text-3xl--line-height: 1.25;
-  --text-4xl: 12px;
-  --text-4xl--line-height: 1.25;
-  --text-5xl: 12px;
-  --text-5xl--line-height: 1.25;
-  --text-6xl: 12px;
-  --text-6xl--line-height: 1.25;
-  --text-7xl: 12px;
-  --text-7xl--line-height: 1.25;
-  --text-8xl: 12px;
-  --text-8xl--line-height: 1.25;
-  --text-9xl: 12px;
-  --text-9xl--line-height: 1.25;
-}
-
-html {
-  font-size: 12px;
 }
 
 .font-bebas-neue {
@@ -70,12 +34,6 @@ header nav .header-nav-link {
   font-size: var(--text-nav);
   line-height: 1.25;
   font-family: var(--font-bebas-neue), sans-serif;
-}
-
-/* Mobile brutalist nav: links inherit JS-scaled size from .mobile-nav-link */
-header nav .mobile-nav-link a {
-  font-size: inherit;
-  line-height: inherit;
 }
 
 header .site-logo {
@@ -151,7 +109,7 @@ body {
   background-color: #222;
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), monospace;
-  font-size: var(--text-body-copy);
+  font-size: var(--text-body);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
@@ -307,53 +265,11 @@ header nav .header-nav-link,
   background: transparent;
 }
 
-[data-home-hero-label] {
-  font-family: var(--font-bebas-neue), sans-serif;
-  font-size: var(--text-h1);
-  line-height: 1.0;
-}
 
-[data-home-hero-title] {
-  font-family: var(--font-bebas-neue), sans-serif;
-  font-size: var(--text-home-hero-title);
-  line-height: 1.05;
-}
-
-[data-home-hero-artist] {
-  font-family: var(--font-bebas-neue), sans-serif;
-  font-size: var(--text-home-hero-artist);
-  line-height: 1.15;
-}
-
-@media (max-width: 767px) {
-  [data-home-hero-label] {
-    font-size: clamp(1rem, 4.5vw, 1.4rem);
-    line-height: 1;
-  }
-
-  [data-home-hero-title] {
-    font-size: clamp(1.5rem, 7vw, 2.25rem);
-    line-height: 1;
-  }
-
-  [data-home-hero-artist] {
-    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
-    line-height: 1.05;
-  }
-}
-
-/* Main content links: black in all states (header/footer are outside main; dark UIs use text-white on links to override) */
 @layer base {
-  h1,
-  h2,
-  h3 {
-    font-size: var(--text-headline);
-    line-height: 1.25;
-  }
-
   h1 {
     font-family: var(--font-bebas-neue), sans-serif;
-    font-size: var(--text-h1);
+    font-size: var(--text-hero);
     letter-spacing: 0.05em;
     line-height: 1.0;
     text-transform: uppercase;
@@ -361,7 +277,7 @@ header nav .header-nav-link,
 
   h2 {
     font-family: var(--font-bebas-neue), sans-serif;
-    font-size: var(--text-h2);
+    font-size: var(--text-heading);
     letter-spacing: 0.05em;
     line-height: 1.05;
     text-transform: uppercase;
@@ -369,10 +285,15 @@ header nav .header-nav-link,
 
   h3 {
     font-family: var(--font-bebas-neue), sans-serif;
-    font-size: var(--text-h3);
+    font-size: var(--text-subheading);
     letter-spacing: 0.05em;
     line-height: 1.1;
     text-transform: uppercase;
+  }
+
+  body, p {
+    font-size: var(--text-body);
+    font-family: var(--font-ibm-plex-mono), monospace;
   }
 
   input,
@@ -390,12 +311,6 @@ header nav .header-nav-link,
     text-transform: uppercase;
   }
 
-  /* Headline-styled links (e.g. Next.js Link with typography.h2, not a real h2) */
-  main a.font-bebas-neue {
-    font-size: var(--text-headline);
-    line-height: 1.25;
-  }
-
   main a {
     color: #000000;
   }
@@ -408,22 +323,13 @@ header nav .header-nav-link,
   }
 }
 
-/* Mobile header — compact centered logo and nav */
 @media (max-width: 767px) {
-  h2 {
-    font-size: var(--text-headline);
-  }
-
-  h3 {
-    font-size: 20px;
-  }
-
   .artist-social-links {
     flex-wrap: nowrap;
   }
 
   .artist-social-link {
-    font-size: clamp(15px, 5.5vw, 22px);
+    font-size: var(--text-nav);
   }
 
   header nav .header-nav-link.mobile-nav-link {
@@ -433,7 +339,7 @@ header nav .header-nav-link,
     text-align: center;
     line-height: 1.25 !important;
     letter-spacing: 0;
-    font-size: clamp(24px, 6.5vw, 30px);
+    font-size: var(--text-nav);
   }
 
   header nav .mobile-nav-link a {

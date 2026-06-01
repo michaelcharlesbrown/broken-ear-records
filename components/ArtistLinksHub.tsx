@@ -93,7 +93,7 @@ export default function ArtistLinksHub({
       <div className="w-full flex flex-col items-stretch p-8">
         <h1 className={`${typography.h1} mb-2 text-center`}>{artistName}</h1>
 
-        <p className="mb-10 text-center font-mono uppercase text-base leading-tight tracking-wide text-black">
+        <p className="mb-10 text-center font-mono uppercase leading-tight tracking-wide text-black">
           &ldquo;{releaseTitle}&rdquo;
         </p>
 
@@ -125,12 +125,12 @@ export default function ArtistLinksHub({
                       }`}
                     />
                   ) : (
-                    <span className="text-black text-sm font-normal font-mono uppercase">
+                    <span className="text-black font-normal font-mono uppercase">
                       {link.label}
                     </span>
                   )}
                 </div>
-                <div className="flex items-center text-black text-sm font-normal font-mono uppercase">
+                <div className="flex items-center text-black font-normal font-mono uppercase">
                   PLAY
                   <PlayIcon />
                 </div>
@@ -158,7 +158,7 @@ export default function ArtistLinksHub({
 
         <Link
           href={backHref}
-          className="text-center font-mono text-xs uppercase tracking-wide text-black opacity-80 hover:opacity-100"
+          className="text-center font-mono uppercase tracking-wide text-black opacity-80 hover:opacity-100"
         >
           {backLabel}
         </Link>
