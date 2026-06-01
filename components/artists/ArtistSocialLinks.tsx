@@ -29,7 +29,7 @@ export default function ArtistSocialLinks({ artist }: ArtistSocialLinksProps) {
   }
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="artist-social-links flex flex-wrap gap-3">
       {links.map((link) => (
         <span
           key={link.label}

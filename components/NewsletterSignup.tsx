@@ -64,11 +64,11 @@ export default function NewsletterSignup() {
         className="text-black text-center"
       >
         <h2 className="mb-0">
-          Sign up to hear about the latest releases from Broken Ear Records.
+          Sign up to hear about<br />the latest releases.
         </h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <span
           data-paper-nav
           data-cut={cutVariant("newsletter-email")}

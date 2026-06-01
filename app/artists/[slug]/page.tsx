@@ -78,7 +78,7 @@ export default async function ArtistDetail({ params }: PageProps) {
           <h1>{artist.name}</h1>
         </div>
         {artistReleases.length > 0 && (
-          <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")} className="md:col-span-1">
+          <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")} className="md:col-span-1 order-last md:order-none">
             <h2>Releases</h2>
           </div>
         )}
@@ -98,13 +98,11 @@ export default async function ArtistDetail({ params }: PageProps) {
 
             <ArtistBio paragraphs={artist.bioParagraphs} />
           </div>
-
-          <ArtistSocialLinks artist={artist} />
         </div>
 
         {/* Right sidebar — 1 of 3 */}
         {artistReleases.length > 0 && (
-          <div className="md:col-span-1 flex flex-col gap-4 md:gap-6">
+          <div className="md:col-span-1 flex flex-col gap-4 md:gap-6 order-last md:order-none">
             {artistReleases.map((release) => (
               <div key={release.slug} className="flex flex-col gap-3 md:gap-4">
                 <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-title-" + release.slug)}>
@@ -140,6 +138,11 @@ export default async function ArtistDetail({ params }: PageProps) {
             ))}
           </div>
         )}
+
+        {/* Social links — bottom of page on mobile, below bio on desktop */}
+        <div className="md:col-span-2 order-last md:order-none">
+          <ArtistSocialLinks artist={artist} />
+        </div>
       </div>
     </ArtistPageShell>
   );

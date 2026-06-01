@@ -25,10 +25,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* Default text stack: IBM Plex Mono (same as mono; headings override with font-bebas-neue) */
-  --font-sans: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-sans: var(--font-special-elite), serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
   --font-family-bebas-neue: var(--font-bebas-neue), sans-serif;
+  --font-family-special-elite: var(--font-special-elite), serif;
 
   /* Uniform 12px type scale site-wide */
   --text-xs: 12px;
@@ -152,7 +152,7 @@ header .site-logo {
 body {
   background-color: #222;
   color: var(--foreground);
-  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-family: var(--font-special-elite), serif;
   font-size: var(--text-body-copy);
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -328,10 +328,19 @@ header nav .header-nav-link,
 }
 
 @media (max-width: 767px) {
-  [data-home-hero-title],
-  [data-home-hero-artist] {
-    font-size: var(--text-h1);
+  [data-home-hero-label] {
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
     line-height: 1;
+  }
+
+  [data-home-hero-title] {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    line-height: 1;
+  }
+
+  [data-home-hero-artist] {
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
+    line-height: 1.05;
   }
 }
 
@@ -406,6 +415,22 @@ header nav .header-nav-link,
 
 /* Mobile header — compact centered logo and nav */
 @media (max-width: 767px) {
+  h2 {
+    font-size: var(--text-headline);
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .artist-social-links {
+    flex-wrap: nowrap;
+  }
+
+  .artist-social-link {
+    font-size: clamp(15px, 5.5vw, 22px);
+  }
+
   header nav .header-nav-link.mobile-nav-link {
     width: auto;
     padding: 0 !important;

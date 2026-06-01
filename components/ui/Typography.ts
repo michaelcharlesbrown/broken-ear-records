@@ -4,9 +4,9 @@ export const typography = {
   h1: "font-bebas-neue leading-tight",
   h2: "font-bebas-neue leading-tight",
   h3: "font-bebas-neue leading-tight",
-  body: "font-mono uppercase text-inherit",
+  body: "uppercase text-inherit",
   label: "text-base uppercase tracking-wide",
-  /** Section headings (e.g. “Releases”) — 12px IBM Plex Mono, site standard */
+  /** Section headings (e.g. "Releases") -- site standard */
   sectionLabel:
-    "font-mono uppercase tracking-wide text-base leading-tight text-black",
+    "uppercase tracking-wide text-base leading-tight text-black",
 };
