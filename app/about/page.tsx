@@ -53,7 +53,7 @@ export default function About() {
         <div className="absolute inset-0 bg-black/70" aria-hidden />
       </div>
 
-      <Container className="relative z-10 py-20 md:py-28 md:px-8 text-white mix-blend-difference">
+      <Container className="relative z-10 pt-12 pb-20 md:pb-28 md:px-8 text-white mix-blend-difference">
         <h1 className="sr-only">About</h1>
         <div className="max-w-3xl space-y-6 text-base font-mono uppercase leading-relaxed tracking-wide text-white">
           <p>

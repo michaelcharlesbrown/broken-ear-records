@@ -52,7 +52,7 @@ export default function Home() {
     <>
       <h1 className="sr-only">Broken Ear Records</h1>
       <div data-artist-page>
-        <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
+        <Container className="pt-12 pb-24 md:pb-32" maxWidth="w-full max-w-[1400px]">
           <div className="flex flex-col gap-4 md:gap-6">
 
             {/* Latest Releases — content-width headline */}

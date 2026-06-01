@@ -10,7 +10,7 @@ export default function ArtistPageShell({
 }: ArtistPageShellProps) {
   return (
     <div data-artist-page>
-      <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
+      <Container className="pt-12 pb-24 md:pb-32" maxWidth="w-full max-w-[1400px]">
         {children}
       </Container>
     </div>

@@ -67,7 +67,7 @@ export default async function ReleaseDetail({ params }: PageProps) {
   const artist = artists.find((a) => a.slug === release.artistSlug);
   return (
     <div data-artist-page>
-      <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
+      <Container className="pt-12 pb-24 md:pb-32" maxWidth="w-full max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
 
           {/* Cover — mobile: 1st | desktop: left col */}
