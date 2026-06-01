@@ -28,13 +28,13 @@ export default function Header() {
       }
     >
       <Container
-        className={`pt-0 pb-[10px] md:py-4 flex flex-col items-center gap-2 md:flex-row md:justify-between md:items-center md:gap-0 w-full max-w-none mx-0 !px-[5px] md:!px-6 ${
+        className={`pt-4 pb-[10px] md:py-4 flex flex-col items-center gap-2 md:flex-row md:justify-between md:items-center md:gap-0 w-full max-w-none mx-0 ${
           isHeroOverlay ? "text-white" : "text-black"
         }`}
       >
         <Link
           href="/"
-          className="relative flex w-[calc(100%+10px)] -mx-[5px] items-center md:mx-0 md:inline-flex md:w-auto md:self-auto"
+          className="relative inline-flex w-full items-center md:w-auto md:self-auto"
         >
           <Image
             src={LOGO_SRC}
@@ -43,7 +43,7 @@ export default function Header() {
             height={LOGO_HEIGHT}
             priority
             className="site-logo"
-            sizes="(min-width: 768px) 700px, 100vw"
+            sizes="(min-width: 768px) 700px, 100%"
           />
         </Link>
         <nav data-nav-headlines className="mt-0 w-auto md:w-auto">

@@ -327,6 +327,14 @@ header nav .header-nav-link,
   line-height: 1.15;
 }
 
+@media (max-width: 767px) {
+  [data-home-hero-title],
+  [data-home-hero-artist] {
+    font-size: var(--text-h1);
+    line-height: 1;
+  }
+}
+
 /* Main content links: black in all states (header/footer are outside main; dark UIs use text-white on links to override) */
 @layer base {
   h1,
