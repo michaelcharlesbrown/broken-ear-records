@@ -70,13 +70,8 @@ export default async function ReleaseDetail({ params }: PageProps) {
       <Container className="py-24 md:py-32" maxWidth="w-full max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
 
-          {/* Title — mobile: 1st | desktop: col-2 */}
-          <div data-paper-block data-cut={cutVariant(release.slug + "-heading")} className="order-1 md:order-none md:col-start-2">
-            <h1>{release.title}</h1>
-          </div>
-
-          {/* Cover — mobile: 2nd | desktop: col-1 row-1 */}
-          <div data-paper-block data-cut={cutVariant(release.slug)} className="order-2 md:order-none md:col-start-1 md:row-start-1 overflow-hidden">
+          {/* Cover — mobile: 1st | desktop: left col */}
+          <div data-paper-block data-cut={cutVariant(release.slug)} className="order-1 md:col-start-1 md:row-start-1 overflow-hidden">
             <Image
               src={release.coverImage}
               alt={release.title}
@@ -87,35 +82,45 @@ export default async function ReleaseDetail({ params }: PageProps) {
             />
           </div>
 
-          {/* Artist — mobile: 3rd | desktop: col-2 */}
-          <div data-paper-block data-cut={cutVariant(release.slug + "-artist-label")} className="order-3 md:order-none md:col-start-2">
-            {artist ? (
-              <h2>By <Link href={`/artists/${artist.slug}`}>{artist.name}</Link></h2>
-            ) : (
-              <h2>By {release.artistSlug}</h2>
-            )}
-          </div>
+          {/* Right column: title+artist row, bio, links, social */}
+          <div className="order-2 md:col-start-2 md:row-start-1 flex flex-col gap-4 md:gap-6">
 
-          {/* Bio — mobile: 4th | desktop: col-2 */}
-          <div data-paper-block data-cut={cutVariant(release.slug + "-bio")} className="order-4 md:order-none md:col-start-2 [&_.artist-bio]:mb-0">
-            <ArtistBio paragraphs={release.blurbParagraphs} />
-          </div>
-
-          {/* Stream/Buy — mobile: 5th | desktop: col-1 */}
-          <div className="order-5 md:order-none md:col-start-1">
-            <ReleaseLinks
-              buyLinks={release.buyLinks}
-              streamLinks={release.streamLinks}
-              slug={release.slug}
-            />
-          </div>
-
-          {/* Social — mobile: last | desktop: col-2 */}
-          {artist && (
-            <div className="order-last md:order-none md:col-start-2">
-              <ArtistSocialLinks artist={artist} />
+            {/* Title + Artist — side by side on desktop, stacked on mobile */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div data-paper-block data-cut={cutVariant(release.slug + "-heading")} className="flex-1">
+                <h1>{release.title}</h1>
+              </div>
+              <div data-paper-block data-cut={cutVariant(release.slug + "-artist-label")} className="flex-1">
+                {artist ? (
+                  <h2>By <Link href={`/artists/${artist.slug}`}>{artist.name}</Link></h2>
+                ) : (
+                  <h2>By {release.artistSlug}</h2>
+                )}
+              </div>
             </div>
-          )}
+
+            {/* Bio */}
+            <div data-paper-block data-cut={cutVariant(release.slug + "-bio")} className="[&_.artist-bio]:mb-0">
+              <ArtistBio paragraphs={release.blurbParagraphs} />
+            </div>
+
+            {/* Stream/Buy */}
+            <div>
+              <ReleaseLinks
+                buyLinks={release.buyLinks}
+                streamLinks={release.streamLinks}
+                slug={release.slug}
+              />
+            </div>
+
+            {/* Social */}
+            {artist && (
+              <div>
+                <ArtistSocialLinks artist={artist} />
+              </div>
+            )}
+
+          </div>
         </div>
       </Container>
     </div>

@@ -8,7 +8,6 @@ import ArtistBio from "@/components/artists/ArtistBio";
 import ArtistSocialLinks from "@/components/artists/ArtistSocialLinks";
 import ArtistPageShell from "@/components/artists/ArtistPageShell";
 import ReleaseLinks from "@/components/releases/ReleaseLinks";
-import { typography } from "@/components/ui/Typography";
 import { cutVariant } from "@/lib/cutVariant";
 
 interface PageProps {
@@ -73,36 +72,31 @@ export default async function ArtistDetail({ params }: PageProps) {
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
 
-        {/* Headline row — paper blocks sitting on dark background */}
-        <div data-paper-block data-cut={cutVariant(artist.slug + "-heading")} className="md:col-span-2">
-          <h1>{artist.name}</h1>
-        </div>
-        {artistReleases.length > 0 && (
-          <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")} className="md:col-span-1 order-last md:order-none">
-            <h2>Releases</h2>
+        {/* Left column — photo, name, bio | mobile: 1st */}
+        <div className="md:col-span-2 flex flex-col gap-4 md:gap-6 order-1 md:order-none">
+          <div data-paper-block data-cut={cutVariant(artist.slug)} className="overflow-hidden">
+            <Image
+              src={artist.images.portrait || artist.heroImage}
+              alt={artist.name}
+              width={1200}
+              height={800}
+              className="w-full h-auto object-cover rounded-none"
+            />
           </div>
-        )}
-
-        {/* Left main column — spans 2 of 3 */}
-        <div className="md:col-span-2 flex flex-col gap-4 md:gap-6">
-          <div data-paper-block data-cut={cutVariant(artist.slug)} className="flex flex-col gap-6">
-            <div className="overflow-hidden">
-              <Image
-                src={artist.images.portrait || artist.heroImage}
-                alt={artist.name}
-                width={1200}
-                height={800}
-                className="w-full h-auto object-cover rounded-none"
-              />
-            </div>
-
+          <div data-paper-block data-cut={cutVariant(artist.slug + "-heading")}>
+            <h1>{artist.name}</h1>
+          </div>
+          <div data-paper-block data-cut={cutVariant(artist.slug + "-bio")}>
             <ArtistBio paragraphs={artist.bioParagraphs} />
           </div>
         </div>
 
-        {/* Right sidebar — 1 of 3 */}
+        {/* Right column — releases heading + list | mobile: 2nd */}
         {artistReleases.length > 0 && (
-          <div className="md:col-span-1 flex flex-col gap-4 md:gap-6 order-last md:order-none">
+          <div className="md:col-span-1 flex flex-col gap-4 md:gap-6 order-2 md:order-none">
+            <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")}>
+              <h2>Releases</h2>
+            </div>
             {artistReleases.map((release) => (
               <div key={release.slug} className="flex flex-col gap-3 md:gap-4">
                 <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-title-" + release.slug)}>
@@ -110,8 +104,7 @@ export default async function ArtistDetail({ params }: PageProps) {
                     <h3 className="text-black">{release.title}</h3>
                   </Link>
                 </div>
-
-                <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-" + release.slug)} className="flex flex-col gap-3">
+                <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-" + release.slug)}>
                   <Link href={`/releases/${release.slug}`}>
                     <Image
                       src={release.coverImage}
@@ -121,14 +114,7 @@ export default async function ArtistDetail({ params }: PageProps) {
                       className="w-full h-auto object-cover rounded-none"
                     />
                   </Link>
-
-                  {release.blurbParagraphs[0] && (
-                    <p className={typography.body}>
-                      {release.blurbParagraphs[0].text}
-                    </p>
-                  )}
                 </div>
-
                 <ReleaseLinks
                   buyLinks={release.buyLinks}
                   streamLinks={release.streamLinks}
@@ -139,7 +125,7 @@ export default async function ArtistDetail({ params }: PageProps) {
           </div>
         )}
 
-        {/* Social links — bottom of page on mobile, below bio on desktop */}
+        {/* Social links | mobile: last */}
         <div className="md:col-span-2 order-last md:order-none">
           <ArtistSocialLinks artist={artist} />
         </div>

@@ -152,7 +152,7 @@ header .site-logo {
 body {
   background-color: #222;
   color: var(--foreground);
-  font-family: var(--font-special-elite), serif;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: var(--text-body-copy);
   text-transform: uppercase;
   letter-spacing: 0.02em;
