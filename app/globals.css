@@ -97,6 +97,40 @@ header .site-logo {
   color: black;
 }
 
+.newsletter-paper-nav {
+  display: block;
+  width: 100%;
+  padding: 0.35rem 0.65rem;
+}
+
+.newsletter-field {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-size: var(--text-nav);
+  line-height: 1.25;
+  font-family: var(--font-bebas-neue), sans-serif;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.newsletter-field::placeholder {
+  color: rgb(115 115 115);
+}
+
+.newsletter-field:focus-visible {
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
+.newsletter-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 @media (min-width: 768px) {
   header .site-logo {
     width: clamp(280px, 45vw, 700px);
