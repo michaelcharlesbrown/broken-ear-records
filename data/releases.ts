@@ -1,5 +1,14 @@
 import type { BioParagraph } from "@/data/artists";
 
+export interface ReleaseReview {
+  url: string;
+  author: string;
+  publication: string;
+  publicationUrl: string;
+  body: string;
+  designation?: string;
+}
+
 export interface Release {
   title: string;
   titleImage?: string;
@@ -12,13 +21,14 @@ export interface Release {
   blurbParagraphs: BioParagraph[];
   buyLinks: Array<{ label: string; href: string }>;
   streamLinks: Array<{ label: string; href: string }>;
+  review?: ReleaseReview;
 }
 
 export const releases: Release[] = [
   {
     title: "Beneath the Burning Sands",
     titleImage: "/images/beneath.jpg",
-    slug: "red-moon-apostles-debut",
+    slug: "beneath-the-burning-sands",
     artistSlug: "red-moon-apostles",
     year: 2023,
     type: "Album",
@@ -49,7 +59,7 @@ export const releases: Release[] = [
   {
     title: "Starved",
     titleImage: "/images/starved.jpg",
-    slug: "mad-denizen-first-album",
+    slug: "starved",
     artistSlug: "mad-denizen",
     year: 2024,
     type: "Album",
@@ -86,11 +96,19 @@ export const releases: Release[] = [
         href: "https://open.spotify.com/artist/3WJymJTqfpwT0iybktxqQh",
       },
     ],
+    review: {
+      url: "https://performermag.com/new-music-and-video/reviews/indie-rock-reviews/mad-denizen-starved-vinyl-review/",
+      author: "Benjamin Ricci",
+      publication: "Performer Magazine",
+      publicationUrl: "https://performermag.com",
+      body: "Starved is a winner for both the listener and even the most discerning audiophile. The tunes are moody and a great Smiths alternative for when you're feeling mad at the world and just want a comforting record to turn to.",
+      designation: "Vinyl of the Month",
+    },
   },
   {
     title: "Dark Patterns",
     titleImage: "/images/dark-patterns.jpg",
-    slug: "booming-dunes-first-ep",
+    slug: "dark-patterns",
     artistSlug: "booming-dunes",
     year: 2023,
     type: "Album",

@@ -9,6 +9,9 @@ export interface Artist {
   heroImage: string;
   shortBio: string;
   bioParagraphs: BioParagraph[];
+  genre: string[];
+  /** Custom OG image for this artist's pages. Falls back to hero if not set. */
+  ogImage?: string;
   images: {
     /** Full-bleed hero at top of artist detail page */
     pageHero?: string;
@@ -25,6 +28,8 @@ export interface Artist {
     youtube?: string;
     tiktok?: string;
   };
+  /** External database URLs for schema sameAs: MusicBrainz, Discogs, AllMusic, etc. */
+  sameAs?: string[];
   releases: string[];
 }
 
@@ -40,6 +45,8 @@ export const artists: Artist[] = [
     heroImage: "/images/rma/red-moon-apostles.jpg",
     shortBio:
       "Bow down to your algorithmic overlords and embark a harrowing journey across the dusty redsand wasteland of the future past.",
+    genre: ["Experimental", "Electronic", "Ambient"],
+    ogImage: "/og/og-red-moon-apostles.jpg",
     bioParagraphs: [
       {
         text: "Bow down to your algorithmic overlords and embark a harrowing journey across the dusty redsand wasteland of the future past, where time loops in ghostly incantations on magnetic tape and the whispers of a forgotten civilization drift across the barren landscape.",
@@ -57,10 +64,12 @@ export const artists: Artist[] = [
     socials: {
       website: "https://redmoonapostles.bandcamp.com",
       spotify: "https://open.spotify.com/artist/3IXgCsALnK7snY68rFwwe9",
+      appleMusic: "https://music.apple.com/us/artist/red-moon-apostles/1792943559",
       instagram: "https://instagram.com/redmoonapostles",
       youtube: "https://www.youtube.com/@redmoonapostles",
     },
-    releases: ["red-moon-apostles-debut", "red-moon-apostles-ep"],
+    sameAs: [],
+    releases: ["beneath-the-burning-sands"],
   },
   {
     name: "Mad Denizen",
@@ -68,6 +77,8 @@ export const artists: Artist[] = [
     heroImage: "/images/md/mad-denizen.jpg",
     shortBio:
       "Men are so necessarily mad that not to be mad would appear mad, through another trick madness played.",
+    genre: ["Folk", "Indie Folk", "Lo-Fi"],
+    ogImage: "/og/og-mad-denizen.jpg",
     bioParagraphs: [
       {
         text: "Men are so necessarily mad that not to be mad would appear mad, through another trick madness played.",
@@ -95,10 +106,14 @@ export const artists: Artist[] = [
     socials: {
       website: "https://maddenizen.bandcamp.com",
       spotify: "https://open.spotify.com/artist/3WJymJTqfpwT0iybktxqQh",
+      appleMusic: "https://music.apple.com/us/artist/mad-denizen/1713797479",
       instagram: "https://instagram.com/maddenizen",
       youtube: "https://www.youtube.com/@maddenizen",
     },
-    releases: ["mad-denizen-first-album"],
+    sameAs: [
+      "https://performermag.com/new-music-and-video/reviews/indie-rock-reviews/mad-denizen-starved-vinyl-review/",
+    ],
+    releases: ["starved"],
   },
   {
     name: "Booming Dunes",
@@ -106,6 +121,8 @@ export const artists: Artist[] = [
     heroImage: "/images/bd/booming-dunes.jpg",
     shortBio:
       "Weird gadgets and analog synthesizers moaning and howling in reverse, echoing from handmade tape loops dangling from whirring reel-to-reel tape machines in a dark studio in the middle of the night.",
+    genre: ["Ambient", "Experimental", "Electronic"],
+    ogImage: "/og/og-booming-dunes.jpg",
     bioParagraphs: [
       {
         text: "Weird gadgets and analog synthesizers moaning and howling in reverse, echoing from handmade tape loops dangling from whirring reel-to-reel tape machines in a dark studio in the middle of the night.",
@@ -123,9 +140,11 @@ export const artists: Artist[] = [
     socials: {
       website: "https://boomingdunes.bandcamp.com",
       spotify: "https://open.spotify.com/artist/6Gur5AyvODlXA3mvKSHcOP",
+      appleMusic: "https://music.apple.com/us/artist/booming-dunes/1758819143",
       instagram: "https://instagram.com/boomingdunes",
       youtube: "https://www.youtube.com/@boomingdunes",
     },
-    releases: ["booming-dunes-first-ep"],
+    sameAs: [],
+    releases: ["dark-patterns"],
   },
 ];

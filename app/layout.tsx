@@ -21,13 +21,45 @@ const bebasNeue = Bebas_Neue({
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${PRIMARY_DOMAIN}/#organization`,
+      name: "Broken Ear Records",
+      url: PRIMARY_DOMAIN,
+      description:
+        "Independent record label based in Los Angeles, releasing music by Red Moon Apostles, Mad Denizen, and Booming Dunes. Founded by Michael Charles Brown.",
+      founder: {
+        "@type": "Person",
+        "@id": "https://michaelcharlesbrown.com/#person",
+        name: "Michael Charles Brown",
+      },
+      sameAs: ["https://www.instagram.com/brokenearrecords/"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${PRIMARY_DOMAIN}/#website`,
+      name: "Broken Ear Records",
+      url: PRIMARY_DOMAIN,
+      description:
+        "Independent record label based in Los Angeles, releasing music by Red Moon Apostles, Mad Denizen, and Booming Dunes.",
+      publisher: {
+        "@id": `${PRIMARY_DOMAIN}/#organization`,
+      },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(PRIMARY_DOMAIN),
   title: {
     default: "Broken Ear Records",
     template: "%s | Broken Ear Records",
   },
-  description: "Independent record label based in Los Angeles.",
+  description:
+    "Broken Ear Records is an independent record label based in Los Angeles. Home to Red Moon Apostles, Mad Denizen, and Booming Dunes.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -61,6 +93,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
+      </head>
       <body
         className={`${ibmPlexMono.variable} ${bebasNeue.variable} antialiased flex flex-col`}
       >

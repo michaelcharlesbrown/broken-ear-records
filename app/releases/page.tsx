@@ -7,29 +7,32 @@ import MediaCard from "@/components/MediaCard";
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
+const DESCRIPTION =
+  "Browse releases from Broken Ear Records, an independent Los Angeles record label. Music by Red Moon Apostles, Mad Denizen, and Booming Dunes.";
+
 export const metadata: Metadata = {
   title: "Releases",
-  description: "Discover releases on Broken Ear Records.",
+  description: DESCRIPTION,
   alternates: {
     canonical: `${PRIMARY_DOMAIN}/releases`,
   },
   openGraph: {
     title: "Releases | Broken Ear Records",
-    description: "Discover releases on Broken Ear Records.",
+    description: DESCRIPTION,
     url: `${PRIMARY_DOMAIN}/releases`,
     images: [
       {
         url: "/og/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Broken Ear Records",
+        alt: "Broken Ear Records — Releases",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Releases | Broken Ear Records",
-    description: "Discover releases on Broken Ear Records.",
+    description: DESCRIPTION,
     images: ["/og/og-default.png"],
   },
 };

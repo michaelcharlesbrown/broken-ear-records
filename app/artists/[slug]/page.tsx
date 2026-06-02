@@ -40,7 +40,7 @@ export async function generateMetadata({
       url: `${PRIMARY_DOMAIN}/artists/${slug}`,
       images: [
         {
-          url: getArtistHeroSrc(artist),
+          url: artist.ogImage ?? getArtistHeroSrc(artist),
           width: 1200,
           height: 630,
           alt: artist.name,
@@ -51,9 +51,55 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${artist.name} | Broken Ear Records`,
       description: artist.shortBio,
-      images: [getArtistHeroSrc(artist)],
+      images: [artist.ogImage ?? getArtistHeroSrc(artist)],
     },
   };
+}
+
+function buildArtistSchema(artist: (typeof artists)[0], artistReleases: typeof releases) {
+  const socialSameAs = Object.values(artist.socials).filter((v): v is string => Boolean(v));
+  const allSameAs = [...socialSameAs, ...(artist.sameAs ?? [])];
+
+  const musicGroup = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MusicGroup",
+        "@id": `${PRIMARY_DOMAIN}/artists/${artist.slug}#musicgroup`,
+        name: artist.name,
+        url: `${PRIMARY_DOMAIN}/artists/${artist.slug}`,
+        description: artist.bioParagraphs[0]?.text ?? artist.shortBio,
+        genre: artist.genre,
+        member: {
+          "@type": "Person",
+          "@id": "https://michaelcharlesbrown.com/#person",
+          name: "Michael Charles Brown",
+        },
+        recordLabel: {
+          "@type": "Organization",
+          "@id": `${PRIMARY_DOMAIN}/#organization`,
+        },
+        ...(allSameAs.length > 0 && { sameAs: allSameAs }),
+        ...(artistReleases.length > 0 && {
+          album: artistReleases.map((r) => ({
+            "@type": "MusicAlbum",
+            "@id": `${PRIMARY_DOMAIN}/releases/${r.slug}#album`,
+            name: r.title,
+          })),
+        }),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: PRIMARY_DOMAIN },
+          { "@type": "ListItem", position: 2, name: "Artists", item: `${PRIMARY_DOMAIN}/artists` },
+          { "@type": "ListItem", position: 3, name: artist.name, item: `${PRIMARY_DOMAIN}/artists/${artist.slug}` },
+        ],
+      },
+    ],
+  };
+
+  return musicGroup;
 }
 
 export default async function ArtistDetail({ params }: PageProps) {
@@ -65,8 +111,14 @@ export default async function ArtistDetail({ params }: PageProps) {
   }
 
   const artistReleases = releases.filter((r) => artist.releases.includes(r.slug));
+  const schema = buildArtistSchema(artist, artistReleases);
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
     <ArtistPageShell
       artistName={artist.name}
     >
@@ -131,5 +183,6 @@ export default async function ArtistDetail({ params }: PageProps) {
         </div>
       </div>
     </ArtistPageShell>
+    </>
   );
 }

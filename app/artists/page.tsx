@@ -6,29 +6,32 @@ import MediaCard from "@/components/MediaCard";
 
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
+const DESCRIPTION =
+  "Explore artists on Broken Ear Records — Red Moon Apostles, Mad Denizen, and Booming Dunes. Independent label based in Los Angeles.";
+
 export const metadata: Metadata = {
   title: "Artists",
-  description: "Discover artists on Broken Ear Records.",
+  description: DESCRIPTION,
   alternates: {
     canonical: `${PRIMARY_DOMAIN}/artists`,
   },
   openGraph: {
     title: "Artists | Broken Ear Records",
-    description: "Discover artists on Broken Ear Records.",
+    description: DESCRIPTION,
     url: `${PRIMARY_DOMAIN}/artists`,
     images: [
       {
         url: "/og/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Broken Ear Records",
+        alt: "Broken Ear Records — Artists",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Artists | Broken Ear Records",
-    description: "Discover artists on Broken Ear Records.",
+    description: DESCRIPTION,
     images: ["/og/og-default.png"],
   },
 };

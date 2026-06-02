@@ -28,30 +28,35 @@ export async function generateMetadata({
     return {};
   }
 
+  const artist = artists.find((a) => a.slug === release.artistSlug);
+  const description = artist
+    ? `${release.title} by ${artist.name} — ${release.blurb}`
+    : release.blurb;
+
   return {
     title: release.title,
-    description: release.blurb,
+    description,
     alternates: {
       canonical: `${PRIMARY_DOMAIN}/releases/${slug}`,
     },
     openGraph: {
       title: `${release.title} | Broken Ear Records`,
-      description: release.blurb,
+      description,
       url: `${PRIMARY_DOMAIN}/releases/${slug}`,
       images: [
         {
-          url: "/og/og-default.png",
+          url: release.coverImage,
           width: 1200,
-          height: 630,
-          alt: "Broken Ear Records",
+          height: 1200,
+          alt: `${release.title} — Broken Ear Records`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${release.title} | Broken Ear Records`,
-      description: release.blurb,
-      images: ["/og/og-default.png"],
+      description,
+      images: [release.coverImage],
     },
   };
 }
@@ -65,7 +70,63 @@ export default async function ReleaseDetail({ params }: PageProps) {
   }
 
   const artist = artists.find((a) => a.slug === release.artistSlug);
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MusicAlbum",
+        "@id": `${PRIMARY_DOMAIN}/releases/${release.slug}#album`,
+        name: release.title,
+        url: `${PRIMARY_DOMAIN}/releases/${release.slug}`,
+        description: release.blurb,
+        datePublished: String(release.year),
+        image: `${PRIMARY_DOMAIN}${release.coverImage}`,
+        albumReleaseType: "https://schema.org/StudioAlbum",
+        byArtist: {
+          "@type": "MusicGroup",
+          "@id": `${PRIMARY_DOMAIN}/artists/${release.artistSlug}#musicgroup`,
+          name: artist?.name ?? release.artistSlug,
+        },
+        recordLabel: {
+          "@type": "Organization",
+          "@id": `${PRIMARY_DOMAIN}/#organization`,
+        },
+        ...(release.review && {
+          review: {
+            "@type": "Review",
+            url: release.review.url,
+            ...(release.review.designation && { name: release.review.designation }),
+            reviewBody: release.review.body,
+            author: {
+              "@type": "Person",
+              name: release.review.author,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: release.review.publication,
+              url: release.review.publicationUrl,
+            },
+          },
+        }),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: PRIMARY_DOMAIN },
+          { "@type": "ListItem", position: 2, name: "Releases", item: `${PRIMARY_DOMAIN}/releases` },
+          { "@type": "ListItem", position: 3, name: release.title, item: `${PRIMARY_DOMAIN}/releases/${release.slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
     <div data-artist-page>
       <Container className="pt-12 pb-24 md:pb-32" maxWidth="w-full max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
@@ -124,5 +185,6 @@ export default async function ReleaseDetail({ params }: PageProps) {
         </div>
       </Container>
     </div>
+    </>
   );
 }

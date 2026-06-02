@@ -9,18 +9,21 @@ import { cutVariant } from "@/lib/cutVariant";
 const PRIMARY_DOMAIN = "https://brokenearrecords.com";
 
 const latestRelease = releases.find(
-  (release) => release.slug === "red-moon-apostles-debut",
+  (release) => release.slug === "beneath-the-burning-sands",
 );
 
+const DESCRIPTION =
+  "Broken Ear Records is an independent record label based in Los Angeles. Home to Red Moon Apostles, Mad Denizen, and Booming Dunes.";
+
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Independent record label based in Los Angeles.",
+  title: { absolute: "Broken Ear Records" },
+  description: DESCRIPTION,
   alternates: {
     canonical: PRIMARY_DOMAIN,
   },
   openGraph: {
     title: "Broken Ear Records",
-    description: "Independent record label based in Los Angeles.",
+    description: DESCRIPTION,
     url: PRIMARY_DOMAIN,
     images: [
       {
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Broken Ear Records",
-    description: "Independent record label based in Los Angeles.",
+    description: DESCRIPTION,
     images: ["/og/og-default.png"],
   },
 };
