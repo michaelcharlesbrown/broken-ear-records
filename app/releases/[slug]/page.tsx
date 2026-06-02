@@ -85,16 +85,16 @@ export default async function ReleaseDetail({ params }: PageProps) {
           {/* Right column: title+artist row, bio, links, social */}
           <div className="order-2 md:col-start-2 md:row-start-1 flex flex-col gap-4 md:gap-6">
 
-            {/* Title + Artist — side by side on desktop, stacked on mobile */}
-            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-              <div data-paper-block data-cut={cutVariant(release.slug + "-heading")} className="flex-1">
+            {/* Title + Artist — stacked, each spanning full column width */}
+            <div className="flex flex-col gap-4 md:gap-6">
+              <div data-paper-block data-cut={cutVariant(release.slug + "-heading")}>
                 <h1>{release.title}</h1>
               </div>
-              <div data-paper-block data-cut={cutVariant(release.slug + "-artist-label")} className="flex-1">
+              <div data-paper-block data-cut={cutVariant(release.slug + "-artist-label")}>
                 {artist ? (
-                  <h2>By <Link href={`/artists/${artist.slug}`}>{artist.name}</Link></h2>
+                  <h2><Link href={`/artists/${artist.slug}`}>{artist.name}</Link></h2>
                 ) : (
-                  <h2>By {release.artistSlug}</h2>
+                  <h2>{release.artistSlug}</h2>
                 )}
               </div>
             </div>

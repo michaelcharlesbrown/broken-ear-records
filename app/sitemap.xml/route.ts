@@ -12,7 +12,6 @@ export async function GET() {
     { url: `${siteUrl}/`, changefreq: "weekly", priority: 1.0 },
     { url: `${siteUrl}/artists`, changefreq: "weekly", priority: 0.8 },
     { url: `${siteUrl}/releases`, changefreq: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/about`, changefreq: "monthly", priority: 0.5 },
   ];
 
   // Dynamic artist routes

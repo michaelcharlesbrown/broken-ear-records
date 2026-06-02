@@ -94,14 +94,14 @@ export default async function ArtistDetail({ params }: PageProps) {
         {/* Right column — releases heading + list | mobile: 2nd */}
         {artistReleases.length > 0 && (
           <div className="md:col-span-1 flex flex-col gap-4 md:gap-6 order-2 md:order-none">
-            <div data-paper-block data-cut={cutVariant(artist.slug + "-releases-label")}>
-              <h2>Releases</h2>
+            <div data-paper-nav data-cut={cutVariant(artist.slug + "-releases-label")} className="self-start">
+              <p className="eyebrow">Releases</p>
             </div>
             {artistReleases.map((release) => (
               <div key={release.slug} className="flex flex-col gap-3 md:gap-4">
                 <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-title-" + release.slug)}>
                   <Link href={`/releases/${release.slug}`} className="block">
-                    <h3 className="text-black">{release.title}</h3>
+                    <h2 className="text-black">{release.title}</h2>
                   </Link>
                 </div>
                 <div data-paper-block data-cut={cutVariant(artist.slug + "-sidebar-" + release.slug)}>

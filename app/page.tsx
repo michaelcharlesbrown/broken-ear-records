@@ -57,8 +57,8 @@ export default function Home() {
 
             {/* Latest Releases — content-width headline */}
             <div>
-              <div data-paper-block data-cut={cutVariant("home-label")} className="inline-block">
-                <h2>Latest Releases</h2>
+              <div data-paper-nav data-cut={cutVariant("home-label")}>
+                <p className="eyebrow">Latest Releases</p>
               </div>
             </div>
 
@@ -87,7 +87,7 @@ export default function Home() {
                 data-cut={cutVariant("home-title")}
                 className="block text-black"
               >
-                <h3>{latestRelease.title}</h3>
+                <h2>{latestRelease.title}</h2>
               </Link>
               {artist && (
                 <Link
@@ -97,6 +97,7 @@ export default function Home() {
                   className="block text-black"
                 >
                   <h3>{artist.name}</h3>
+
                 </Link>
               )}
             </div>
