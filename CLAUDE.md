@@ -8,7 +8,11 @@ Next.js App Router · Tailwind 4 · No database, no auth, no e-commerce
 
 - Work directly on `main`. Do not use git worktrees — the dev server watches
   the project root only.
-- Dev server: port 3001, already running. Do not restart or reconfigure it.
+- Dev server: always port 3001. Claude is responsible for starting it at the
+  top of each session. Kill any existing process on 3001 first (`lsof -ti :3001 | xargs kill -9`), then start via `npm run dev` in the background.
+- Browser verification: always use Claude in Chrome. Never use the Claude
+  Preview tools (preview_screenshot, preview_snapshot, etc.) — they cause
+  severe lag in the desktop app and make the chat unusable.
 - Do not add dependencies without asking.
 - Do not rename, move, or delete files without explicit instruction.
 
