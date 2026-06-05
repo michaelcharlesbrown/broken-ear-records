@@ -62,9 +62,6 @@ export default async function ArtistLinks({ params }: PageProps) {
     bandcampBuyLink
       ? { href: bandcampBuyLink.href, label: "Bandcamp" }
       : null,
-    artist.socials.youtube
-      ? { href: artist.socials.youtube, label: "YouTube Music" }
-      : null,
   ].filter((l): l is PlatformLink => l !== null);
 
   const socialLinks: SocialLink[] = [

@@ -602,7 +602,9 @@ body:has([data-links-page]) main {
   transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 }
 
-[data-links-ber-link]:hover {
+/* Scoped to [data-links-page] so the hover inversion out-ranks the page's
+   a:visited white rule (this button links to the already-visited home page). */
+[data-links-page] [data-links-ber-link]:hover {
   background: white;
   color: #0a0a0a;
   border-color: white;
