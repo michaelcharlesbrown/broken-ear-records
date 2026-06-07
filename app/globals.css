@@ -6,10 +6,18 @@
   --body-bg: #d0d0d0;
   --body-bg-image: url("/images/paper-bg-dark.jpg");
   --content-bg-image: url("/images/paper-bg.jpg");
+  --shell-bg-image: url("/images/xerox-bg.jpg");
   --paper-hover-bg: #171717;
   --paper-hover-fg: #f2f0ed;
   --paper-hover-image: url("/images/paper-bg-dark.jpg");
   --footer-overlay-image: url("/images/xerox-overlay.jpg");
+  /* Site-wide decorative photocopy overlay — tweak these two to taste.
+     Blend options to try: soft-light (subtle, balanced), overlay (punchier),
+     multiply (heavy/dark — use low opacity), screen / plus-lighter (only show
+     light scratches, near-invisible on the light paper areas). */
+  --site-overlay-image: url("/images/xerox-overlay.jpg");
+  --site-overlay-blend: screen;
+  --site-overlay-opacity: 0.5;
   --text-hero: clamp(2.5rem, 4vw, 3.5rem);
   --text-heading: clamp(1.5rem, 2.5vw, 2rem);
   --text-subheading: clamp(1.25rem, 2.5vw, 2rem);
@@ -130,10 +138,27 @@ body {
   max-width: 1200px;
   margin-inline: auto;
   background-color: var(--body-bg);
-  background-image: var(--content-bg-image);
+  background-image: var(--shell-bg-image);
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Decorative photocopy overlay across the whole shell. Purely visual:
+   pointer-events: none keeps every link/button/input clickable. */
+[data-site-shell]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background-image: var(--site-overlay-image);
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: var(--site-overlay-blend);
+  opacity: var(--site-overlay-opacity);
+  pointer-events: none;
 }
 
 [data-headline-img] {
@@ -157,8 +182,14 @@ body {
   background-image: var(--content-bg-image);
   background-size: cover;
   background-position: center;
-  padding: 1.5rem;
+  padding: 1.25rem;
   filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.50));
+}
+
+/* Image-only boxes hug the edge with a thin mat; text boxes keep the
+   generous padding above so copy never sits on the edge. */
+[data-paper-block]:has(img):not(:has(h1, h2, h3, p)) {
+  padding: 0.625rem;
 }
 
 [data-paper-nav] {
@@ -172,76 +203,6 @@ body {
   transition: background-color 0.15s ease, background-image 0.15s ease;
 }
 
-/*
- * Paper hover — light paper + dark type inverts to dark paper + light type.
- * Uses paper-bg-dark.jpg on hover; no extra assets required.
- */
-[data-paper-nav]:has(a:hover),
-[data-paper-nav]:has(a:focus-visible),
-[data-paper-nav]:has(button:hover:not(:disabled)),
-[data-paper-nav]:has(button:focus-visible:not(:disabled)),
-[data-paper-nav]:has(input:hover:not(:disabled)),
-[data-paper-nav]:has(input:focus:not(:disabled)) {
-  background-color: var(--paper-hover-bg);
-  background-image: var(--paper-hover-image);
-}
-
-[data-paper-nav]:has(a:hover) a,
-[data-paper-nav]:has(a:focus-visible) a,
-[data-paper-nav]:has(a:hover) a:visited,
-[data-paper-nav]:has(a:focus-visible) a:visited,
-[data-paper-nav]:has(button:hover:not(:disabled)) button,
-[data-paper-nav]:has(button:focus-visible:not(:disabled)) button,
-[data-paper-nav]:has(input:hover:not(:disabled)) input,
-[data-paper-nav]:has(input:focus:not(:disabled)) input {
-  color: var(--paper-hover-fg);
-}
-
-[data-paper-nav]:has(input:hover:not(:disabled)) input::placeholder,
-[data-paper-nav]:has(input:focus:not(:disabled)) input::placeholder {
-  color: rgb(180 180 180);
-}
-
-a[data-paper-block] {
-  transition: background-color 0.15s ease, background-image 0.15s ease, color 0.15s ease;
-}
-
-a[data-paper-block]:hover,
-a[data-paper-block]:focus-visible {
-  background-color: var(--paper-hover-bg);
-  background-image: var(--paper-hover-image);
-  color: var(--paper-hover-fg);
-}
-
-a[data-paper-block]:hover *,
-a[data-paper-block]:focus-visible * {
-  color: inherit;
-}
-
-[data-paper-block]:has(> a:hover),
-[data-paper-block]:has(> a:focus-visible),
-[data-paper-block]:has(a:hover),
-[data-paper-block]:has(a:focus-visible) {
-  background-color: var(--paper-hover-bg);
-  background-image: var(--paper-hover-image);
-  transition: background-color 0.15s ease, background-image 0.15s ease;
-}
-
-[data-paper-block]:has(a:hover) a,
-[data-paper-block]:has(a:focus-visible) a,
-[data-paper-block]:has(a:hover) a:visited,
-[data-paper-block]:has(a:focus-visible) a:visited,
-[data-paper-block]:has(a:hover) h1,
-[data-paper-block]:has(a:hover) h2,
-[data-paper-block]:has(a:hover) h3,
-[data-paper-block]:has(a:hover) p,
-[data-paper-block]:has(a:focus-visible) h1,
-[data-paper-block]:has(a:focus-visible) h2,
-[data-paper-block]:has(a:focus-visible) h3,
-[data-paper-block]:has(a:focus-visible) p {
-  color: var(--paper-hover-fg);
-}
-
 .artist-social-link,
 .release-link,
 header nav .header-nav-link,
@@ -252,8 +213,6 @@ header nav .header-nav-link,
 @media (prefers-reduced-motion: reduce) {
   [data-paper-nav],
   a[data-paper-block],
-  [data-paper-block]:has(a:hover),
-  [data-paper-block]:has(a:focus-visible),
   .artist-social-link,
   .release-link,
   header nav .header-nav-link,
@@ -420,6 +379,10 @@ body:has([data-links-page]) .site-footer {
 body:has([data-links-page]) [data-site-shell] {
   max-width: 100%;
   background: none;
+}
+
+body:has([data-links-page]) [data-site-shell]::after {
+  display: none;
 }
 
 body:has([data-links-page]) main {
