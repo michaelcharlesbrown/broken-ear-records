@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Headline typeface — Inktoner. Files live in /public/fonts. */
+@font-face {
+  font-family: "Inktoner";
+  src: url("/fonts/Inktoner.woff2") format("woff2"),
+       url("/fonts/Inktoner.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #f2f0ed;
   --foreground: #171717;
@@ -21,7 +31,7 @@
   --text-hero: clamp(2.5rem, 4vw, 3.5rem);
   --text-heading: clamp(1.5rem, 2.5vw, 2rem);
   --text-subheading: clamp(1.25rem, 2.5vw, 2rem);
-  --text-nav: clamp(1.25rem, 3vw, 1.5rem);
+  --text-nav: clamp(1.125rem, 2.5vw, 1.25rem);
   --text-body: 0.875rem;
   --text-small: 0.75rem;
 }
@@ -33,15 +43,23 @@
   --font-family-bebas-neue: var(--font-bebas-neue), sans-serif;
 }
 
+/* Headlines use Inktoner, falling back to Bebas Neue while it loads.
+   Defined on `body`, not `:root`, because next/font exposes
+   --font-bebas-neue via a class on <body>; at :root that nested var()
+   is undefined, which would invalidate the whole value. */
+body {
+  --font-headline: "Inktoner", var(--font-bebas-neue), sans-serif;
+}
+
 .font-bebas-neue {
   font-family: var(--font-bebas-neue), sans-serif;
 }
 
-/* Header primary navigation — Bebas Neue at --text-nav */
+/* Header primary navigation — Inktoner at --text-nav */
 header nav .header-nav-link {
   font-size: var(--text-nav);
   line-height: 1.25;
-  font-family: var(--font-bebas-neue), sans-serif;
+  font-family: var(--font-headline);
 }
 
 header .site-logo {
@@ -51,16 +69,24 @@ header .site-logo {
 }
 
 .artist-social-links {
-  font-family: var(--font-bebas-neue), sans-serif;
+  font-family: var(--font-headline);
   font-size: var(--text-nav);
   line-height: 1.25;
+}
+
+/* Stream/Buy buttons: two across when there's room (release detail page),
+   stacked full-width when the column is narrow (artist sidebar). */
+.release-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
 }
 
 .artist-social-link,
 .release-link {
   font-size: var(--text-nav);
   line-height: 1.25;
-  font-family: var(--font-bebas-neue), sans-serif;
+  font-family: var(--font-headline);
   color: black;
 }
 
@@ -70,8 +96,14 @@ header .site-logo {
   padding: 0.35rem 0.65rem;
 }
 
+/* Subscribe button is a CTA, not body copy — Inktoner.
+   The email input keeps the mono `.newsletter-field` treatment. */
+.newsletter-paper-nav button {
+  font-family: var(--font-headline);
+}
+
 .newsletter-heading {
-  font-family: var(--font-ibm-plex-mono), monospace;
+  font-family: var(--font-headline);
   font-size: clamp(1.5rem, 1.95vw, 1.625rem);
   font-weight: normal;
   color: var(--paper-hover-fg);
@@ -81,7 +113,7 @@ header .site-logo {
 }
 
 .eyebrow {
-  font-family: var(--font-bebas-neue), sans-serif;
+  font-family: var(--font-headline);
   font-size: var(--text-nav);
   line-height: 1.25;
 }
@@ -238,7 +270,7 @@ header nav .header-nav-link,
 
 @layer base {
   h1 {
-    font-family: var(--font-bebas-neue), sans-serif;
+    font-family: var(--font-headline);
     font-size: var(--text-hero);
     letter-spacing: 0.05em;
     line-height: 1.0;
@@ -246,7 +278,7 @@ header nav .header-nav-link,
   }
 
   h2 {
-    font-family: var(--font-bebas-neue), sans-serif;
+    font-family: var(--font-headline);
     font-size: var(--text-heading);
     letter-spacing: 0.05em;
     line-height: 1.05;
@@ -254,7 +286,7 @@ header nav .header-nav-link,
   }
 
   h3 {
-    font-family: var(--font-bebas-neue), sans-serif;
+    font-family: var(--font-headline);
     font-size: var(--text-subheading);
     letter-spacing: 0.05em;
     line-height: 1.1;

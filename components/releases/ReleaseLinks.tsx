@@ -15,7 +15,7 @@ export default function ReleaseLinks({ buyLinks, streamLinks, slug }: ReleaseLin
   if (links.length === 0) return null;
 
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="release-links-grid">
       {links.map((link) => (
         <span
           key={link.label}

@@ -82,28 +82,18 @@ export default function Home() {
               />
             </Link>
 
-            {/* Album title + band name — side by side below image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* Album title + band name — single button below image */}
+            {artist && (
               <Link
-                href={`/releases/${latestRelease.slug}`}
+                href={`/artists/${artist.slug}`}
                 data-paper-block
                 data-cut={cutVariant("home-title")}
-                className="block text-black"
+                className="block w-fit mx-auto text-black text-center"
               >
                 <h2>{latestRelease.title}</h2>
+                <p>By {artist.name}</p>
               </Link>
-              {artist && (
-                <Link
-                  href={`/artists/${artist.slug}`}
-                  data-paper-block
-                  data-cut={cutVariant("home-artist")}
-                  className="block text-black"
-                >
-                  <h3>{artist.name}</h3>
-
-                </Link>
-              )}
-            </div>
+            )}
 
           </div>
         </Container>

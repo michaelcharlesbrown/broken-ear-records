@@ -21,6 +21,7 @@ export interface Artist {
     title?: string;
   };
   socials: {
+    subvert?: string;
     website?: string;
     spotify?: string;
     appleMusic?: string;
@@ -58,10 +59,11 @@ export const artists: Artist[] = [
     images: {
       pageHero: "/images/rma/rma-hero.jpg",
       hero: "/images/rma/red-moon-apostles.jpg",
-      portrait: "/images/rma/red-moon-apostles.jpg",
+      portrait: "/images/rma/card-rma.jpg",
       title: "/images/rma.jpg",
     },
     socials: {
+      subvert: "https://www.subvert.fm/red-moon-apostles",
       website: "https://redmoonapostles.bandcamp.com",
       spotify: "https://open.spotify.com/artist/3IXgCsALnK7snY68rFwwe9",
       appleMusic: "https://music.apple.com/us/artist/red-moon-apostles/1792943559",
@@ -100,7 +102,7 @@ export const artists: Artist[] = [
     images: {
       pageHero: "/images/md/md-hero.jpg",
       hero: "/images/md/mad-denizen.jpg",
-      portrait: "/images/md/hero-md.jpg",
+      portrait: "/images/md/card-md.jpg",
       title: "/images/md.jpg",
     },
     socials: {
@@ -134,7 +136,7 @@ export const artists: Artist[] = [
     images: {
       pageHero: "/images/bd/bd-hero.jpg",
       hero: "/images/bd/booming-dunes.jpg",
-      portrait: "/images/bd/booming-dunes.jpg",
+      portrait: "/images/bd/card-bd.jpg",
       title: "/images/bd.jpg",
     },
     socials: {

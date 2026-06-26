@@ -45,8 +45,8 @@ export const releases: Release[] = [
     ],
     buyLinks: [
       {
-        label: "Bandcamp",
-        href: "https://redmoonapostles.bandcamp.com/album/beneath-the-burning-sands",
+        label: "Subvert FM",
+        href: "https://www.subvert.fm/red-moon-apostles",
       },
     ],
     streamLinks: [

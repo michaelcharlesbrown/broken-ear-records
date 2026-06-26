@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import { cutVariant } from "@/lib/cutVariant";
 
-const LOGO_SRC = "/images/title.jpg";
-const LOGO_WIDTH = 2500;
-const LOGO_HEIGHT = 284;
+const LOGO_SRC = "/images/logo.png";
+const LOGO_WIDTH = 1348;
+const LOGO_HEIGHT = 106;
 
 export default function Header() {
   const pathname = usePathname();
@@ -34,7 +34,9 @@ export default function Header() {
       >
         <Link
           href="/"
-          className="relative inline-flex w-full items-center md:w-auto md:self-auto"
+          data-paper-block
+          data-cut={cutVariant("home-logo")}
+          className="relative inline-flex w-full items-center overflow-hidden md:w-auto md:self-auto"
         >
           <Image
             src={LOGO_SRC}

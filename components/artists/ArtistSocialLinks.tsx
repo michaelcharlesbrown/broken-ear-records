@@ -8,6 +8,7 @@ const SOCIAL_LINKS: Array<{
   key: keyof Artist["socials"];
   label: string;
 }> = [
+  { key: "subvert", label: "Subvert" },
   { key: "instagram", label: "Instagram" },
   { key: "website", label: "Bandcamp" },
   { key: "spotify", label: "Spotify" },
