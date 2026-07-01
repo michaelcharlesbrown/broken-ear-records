@@ -128,7 +128,7 @@ export default async function ArtistDetail({ params }: PageProps) {
         <div className="md:col-span-2 flex flex-col gap-4 md:gap-6 order-1 md:order-none">
           <div data-paper-block data-cut={cutVariant(artist.slug)} className="overflow-hidden">
             <Image
-              src={artist.images.portrait || artist.heroImage}
+              src={getArtistHeroSrc(artist)}
               alt={artist.name}
               width={1200}
               height={800}

@@ -33,7 +33,7 @@ export default function Header() {
         }`}
       >
         <Link
-          href="/"
+          href="/artists"
           data-paper-block
           data-cut={cutVariant("home-logo")}
           className="relative inline-flex w-full items-center overflow-hidden md:w-auto md:self-auto"

@@ -100,7 +100,7 @@ export const artists: Artist[] = [
       },
     ],
     images: {
-      pageHero: "/images/md/md-hero.jpg",
+      pageHero: "/images/md/hero-md.jpg",
       hero: "/images/md/mad-denizen.jpg",
       portrait: "/images/md/card-md.jpg",
       title: "/images/md.jpg",
