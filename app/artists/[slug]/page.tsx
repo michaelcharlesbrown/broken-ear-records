@@ -132,6 +132,7 @@ export default async function ArtistDetail({ params }: PageProps) {
               alt={artist.name}
               width={1200}
               height={800}
+              unoptimized
               className="w-full h-auto object-cover rounded-none"
             />
           </div>

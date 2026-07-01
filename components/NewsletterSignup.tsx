@@ -57,12 +57,12 @@ export default function NewsletterSignup() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch gap-4">
+    <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch gap-5 md:gap-4">
       <h2 className="newsletter-heading">
         Sign up to hear about<br className="md:hidden" />{" "}the latest releases.
       </h2>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-3">
         <span
           data-paper-nav
           data-cut={cutVariant("newsletter-email")}

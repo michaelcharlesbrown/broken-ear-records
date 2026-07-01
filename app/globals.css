@@ -60,6 +60,7 @@ header nav .header-nav-link {
   font-size: var(--text-nav);
   line-height: 1.25;
   font-family: var(--font-headline);
+  text-transform: uppercase;
 }
 
 header .site-logo {
@@ -88,18 +89,37 @@ header .site-logo {
   line-height: 1.25;
   font-family: var(--font-headline);
   color: black;
+  text-transform: uppercase;
 }
 
-.newsletter-paper-nav {
-  display: block;
+.newsletter-paper-nav[data-paper-nav] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 0.35rem 0.65rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
 }
 
 /* Subscribe button is a CTA, not body copy — Inktoner.
    The email input keeps the mono `.newsletter-field` treatment. */
 .newsletter-paper-nav button {
   font-family: var(--font-headline);
+  font-size: var(--text-nav);
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.newsletter-paper-nav input.newsletter-field {
+  height: 1.375rem;
+  line-height: 1.375rem;
+  padding: 0;
+}
+
+.newsletter-paper-nav button.newsletter-field {
+  height: 1.375rem;
+  line-height: 1.375rem;
+  padding: 0;
 }
 
 .newsletter-heading {
@@ -110,12 +130,14 @@ header .site-logo {
   letter-spacing: 0;
   text-align: center;
   line-height: 1.4;
+  text-transform: uppercase;
 }
 
 .eyebrow {
   font-family: var(--font-headline);
   font-size: var(--text-nav);
   line-height: 1.25;
+  text-transform: uppercase;
 }
 
 .newsletter-field {
@@ -129,6 +151,7 @@ header .site-logo {
   color: black;
   text-align: center;
   padding: 0;
+  margin: 0;
 }
 
 .newsletter-field::placeholder {
@@ -161,7 +184,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-ibm-plex-mono), monospace;
   font-size: var(--text-body);
-  text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
@@ -271,9 +293,9 @@ header nav .header-nav-link,
 @layer base {
   h1 {
     font-family: var(--font-headline);
-    font-size: var(--text-hero);
+    font-size: var(--text-heading);
     letter-spacing: 0.05em;
-    line-height: 1.0;
+    line-height: 1.05;
     text-transform: uppercase;
   }
 
@@ -296,6 +318,7 @@ header nav .header-nav-link,
   body, p {
     font-size: var(--text-body);
     font-family: var(--font-ibm-plex-mono), monospace;
+    text-transform: none;
   }
 
   input,
@@ -303,14 +326,12 @@ header nav .header-nav-link,
   textarea {
     font: inherit;
     letter-spacing: inherit;
-    text-transform: uppercase;
     color: inherit;
   }
 
   input::placeholder,
   textarea::placeholder {
     color: rgb(156 163 175);
-    text-transform: uppercase;
   }
 
   main a {
@@ -327,17 +348,29 @@ header nav .header-nav-link,
 
 @media (max-width: 767px) {
   .artist-social-links {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .artist-social-links [data-paper-nav] {
-    flex: 1;
+    flex: 0 1 auto;
     text-align: center;
     padding: 0.2rem 0.3rem;
   }
 
   .artist-social-link {
     font-size: clamp(0.875rem, 4.2vw, var(--text-nav));
+  }
+
+  .site-footer {
+    padding-block: clamp(4.5rem, 18vw, 7rem);
+    min-height: clamp(18rem, 42vh, 28rem);
+  }
+
+  .newsletter-heading {
+    margin-bottom: 0.25rem;
   }
 
   header nav .header-nav-link.mobile-nav-link {

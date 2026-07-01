@@ -57,7 +57,7 @@ export const artists: Artist[] = [
       },
     ],
     images: {
-      pageHero: "/images/rma/rma-hero.jpg",
+      pageHero: "/images/rma/hero-rma.jpg",
       hero: "/images/rma/red-moon-apostles.jpg",
       portrait: "/images/rma/card-rma.jpg",
       title: "/images/rma.jpg",
@@ -134,7 +134,7 @@ export const artists: Artist[] = [
       },
     ],
     images: {
-      pageHero: "/images/bd/bd-hero.jpg",
+      pageHero: "/images/bd/hero-bd.jpg",
       hero: "/images/bd/booming-dunes.jpg",
       portrait: "/images/bd/card-bd.jpg",
       title: "/images/bd.jpg",
